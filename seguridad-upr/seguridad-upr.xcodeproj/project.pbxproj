@@ -77,7 +77,7 @@
 		CC2766AC19F492700061AC9A /* seguridad-upr */ = {
 			isa = PBXGroup;
 			children = (
-				CC2766DA19F4B8130061AC9A /* Views */,
+				CC2766DA19F4B8130061AC9A /* Resources */,
 				CC2766D919F4B7EC0061AC9A /* Helpers */,
 				CC2766D819F4A5370061AC9A /* Controllers */,
 				CC2766D719F4A5260061AC9A /* Singletons */,
@@ -138,11 +138,11 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		CC2766DA19F4B8130061AC9A /* Views */ = {
+		CC2766DA19F4B8130061AC9A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = Views;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,6 +417,7 @@
 				CC2766CF19F492700061AC9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CC2766D019F492700061AC9A /* Build configuration list for PBXNativeTarget "seguridad-uprTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +426,7 @@
 				CC2766D219F492700061AC9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
