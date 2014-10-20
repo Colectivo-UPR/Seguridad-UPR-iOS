@@ -77,10 +77,10 @@
 		CC2766AC19F492700061AC9A /* seguridad-upr */ = {
 			isa = PBXGroup;
 			children = (
-				CC2766B119F492700061AC9A /* AppDelegate.h */,
-				CC2766B219F492700061AC9A /* AppDelegate.m */,
-				CC2766B419F492700061AC9A /* ViewController.h */,
-				CC2766B519F492700061AC9A /* ViewController.m */,
+				CC2766DA19F4B8130061AC9A /* Views */,
+				CC2766D919F4B7EC0061AC9A /* Helpers */,
+				CC2766D819F4A5370061AC9A /* Controllers */,
+				CC2766D719F4A5260061AC9A /* Singletons */,
 				CC2766BA19F492700061AC9A /* Images.xcassets */,
 				CC2766AD19F492700061AC9A /* Supporting Files */,
 			);
@@ -111,6 +111,38 @@
 				CC2766C819F492700061AC9A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CC2766D719F4A5260061AC9A /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				CC2766B119F492700061AC9A /* AppDelegate.h */,
+				CC2766B219F492700061AC9A /* AppDelegate.m */,
+			);
+			name = Singletons;
+			sourceTree = "<group>";
+		};
+		CC2766D819F4A5370061AC9A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CC2766B419F492700061AC9A /* ViewController.h */,
+				CC2766B519F492700061AC9A /* ViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		CC2766D919F4B7EC0061AC9A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		CC2766DA19F4B8130061AC9A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
