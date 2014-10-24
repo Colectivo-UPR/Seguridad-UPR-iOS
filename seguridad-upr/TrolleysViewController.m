@@ -1,32 +1,30 @@
 //
-//  ViewController.m
+//  TrolleysViewController.m
 //  seguridad-upr
 //
-//  Created by Abimael Carrasquillo Ayala on 10/19/14.
+//  Created by Xiomara on 10/24/14.
 //  Copyright (c) 2014 Colectivo-UPR. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "TrolleysViewController.h"
 
-@interface ViewController ()
+@interface TrolleysViewController ()
 
 @end
 
-@implementation ViewController
+@implementation TrolleysViewController
 
-
-// The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
-        self.title = @"YOURS";
+        self.title = @"Trolleys";
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {

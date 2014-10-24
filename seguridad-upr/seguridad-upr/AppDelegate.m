@@ -8,6 +8,11 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "HomeViewController.h"
+#import "AlertasViewController.h"
+#import "DesalojoViewController.h"
+#import "TelefonosViewController.h"
+#import "TrolleysViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,21 +22,36 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    // Initialize a navigation controller and a tabbar controller
-    ViewController *viewController = [[ViewController alloc]init]; // Initialize View Controller
-    UINavigationController *navigationViewController = [[UINavigationController alloc]initWithRootViewController:viewController]; // Set root view Controller
-    UITabBarController *mainTabBarController = [[UITabBarController alloc]init];
-    [mainTabBarController setViewControllers:@[navigationViewController]];
+    UITabBarController *tb = [[UITabBarController alloc]init];
     
-    self.window.rootViewController = mainTabBarController;
+    UIViewController *alertas  = [[AlertasViewController alloc]initWithNibName:@"AlertasViewController" bundle:nil];
+    UIViewController *telefono = [[TelefonosViewController alloc]initWithNibName:@"TelefonosViewController" bundle:nil];
+    UIViewController *desalojo = [[DesalojoViewController alloc]initWithNibName:@"DesalojoViewController" bundle:nil];
+    UIViewController *trolleys = [[TrolleysViewController alloc]initWithNibName:@"TrolleysViewController" bundle:nil];
+    
+    tb.viewControllers = @[alertas, telefono, desalojo, trolleys];
+    tb.tabBar.tintColor = [UIColor redColor];
+    tb.title = @"Alertas";
+    
+    alertas.title  = @"Alertas";
+    telefono.title = @"Teléfonos";
+    desalojo.title = @"Desalojo";
+    trolleys.title = @"Trolleys";
+    
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:tb];
+    nc.navigationBar.tintColor = [UIColor whiteColor];
+    
+    // Descomentar cuando sepamos el color exacto
+    //UIColor *color = [self getUIColorObjectFromHexString:@"206691" alpha:0.9];
+    
+    [nc.navigationBar setBarTintColor:[UIColor redColor]];
+    self.window.rootViewController = nc;
     [self.window makeKeyAndVisible];
-     
-     
+    
     return YES;
 }
 
@@ -58,3 +78,4 @@
 }
 
 @end
+
