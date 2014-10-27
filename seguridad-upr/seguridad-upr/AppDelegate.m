@@ -23,10 +23,48 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     // Initialize a navigation controller and a tabbar controller
-    ViewController *viewController = [[ViewController alloc]init]; // Initialize View Controller
-    UINavigationController *navigationViewController = [[UINavigationController alloc]initWithRootViewController:viewController]; // Set root view Controller
+    ViewController *viewController1 = [[ViewController alloc]init]; // Initialize View Controller
+    UINavigationController *navigationViewController1 = [[UINavigationController alloc]initWithRootViewController:viewController1]; // Set root view Controller
+    
+    // Other 3 View Controllers
+    UIViewController *viewController2 = [[UIViewController alloc] init];
+    UIViewController *viewController3 = [[UIViewController alloc] init];
+    UIViewController *viewController4 = [[UIViewController alloc] init];
+    UIViewController *viewController5 = [[UIViewController alloc] init];
+    
     UITabBarController *mainTabBarController = [[UITabBarController alloc]init];
-    [mainTabBarController setViewControllers:@[navigationViewController]];
+    
+    // Tint Color
+    
+    UIColor *redColor = [UIColor colorWithRed:355.0f/255.0f
+                                        green:84.0/255.0f
+                                        blue:84.0/255.0f
+                                        alpha:1.0f];
+    
+    
+    [[mainTabBarController tabBar] setTintColor:redColor];
+    
+    // Initialize Views
+    
+    [mainTabBarController setViewControllers:@[navigationViewController1, viewController2, viewController3, viewController4, viewController5]];
+    
+    // Set the icons
+    
+    // Item 0
+    
+    [(UITabBarItem *)[mainTabBarController.tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"World-Icon"]];
+    
+    // Item 1
+    [(UITabBarItem *)[mainTabBarController.tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"Phone-Icon"]];
+    
+    // Item 2
+    [(UITabBarItem *)[mainTabBarController.tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"Route-Icon"]];
+    
+    // Item 3
+    [(UITabBarItem *)[mainTabBarController.tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"Trolley-Icon"]];
+    
+    // Item 4
+    [(UITabBarItem *)[mainTabBarController.tabBar.items objectAtIndex:4] setImage:[UIImage imageNamed:@"Services-Icon"]];
     
     self.window.rootViewController = mainTabBarController;
     [self.window makeKeyAndVisible];
