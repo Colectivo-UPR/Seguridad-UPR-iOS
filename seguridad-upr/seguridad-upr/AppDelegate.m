@@ -8,6 +8,12 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "HomeViewController.h"
+#import "AlertasViewController.h"
+#import "DesalojoViewController.h"
+#import "TelefonosViewController.h"
+#import "TrolleysViewController.h"
+#import "RecursosViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,60 +23,108 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    // Initialize a navigation controller and a tabbar controller
-    ViewController *viewController1 = [[ViewController alloc]init]; // Initialize View Controller
-    UINavigationController *navigationViewController1 = [[UINavigationController alloc]initWithRootViewController:viewController1]; // Set root view Controller
+    UITabBarController *tb = [[UITabBarController alloc]init];
     
-    // Other 3 View Controllers
-    UIViewController *viewController2 = [[UIViewController alloc] init];
-    UIViewController *viewController3 = [[UIViewController alloc] init];
-    UIViewController *viewController4 = [[UIViewController alloc] init];
-    UIViewController *viewController5 = [[UIViewController alloc] init];
+    UIViewController *alertas  = [[AlertasViewController alloc]initWithNibName:@"AlertasViewController" bundle:nil];
+    UINavigationController *ncAlertas = [[UINavigationController alloc]initWithRootViewController:alertas];
+    [ncAlertas.navigationBar setBarTintColor:[UIColor redColor]];
     
-    UITabBarController *mainTabBarController = [[UITabBarController alloc]init];
+    UIViewController *telefono = [[TelefonosViewController alloc]initWithNibName:@"TelefonosViewController" bundle:nil];
+    UINavigationController *ncTelefono = [[UINavigationController alloc]initWithRootViewController:telefono];
+    [ncTelefono.navigationBar setBarTintColor:[UIColor redColor]];
     
-    // Tint Color
+    UIViewController *desalojo = [[DesalojoViewController alloc]initWithNibName:@"DesalojoViewController" bundle:nil];
+    UINavigationController *ncDesalojo = [[UINavigationController alloc]initWithRootViewController:desalojo];
+    [ncDesalojo.navigationBar setBarTintColor:[UIColor redColor]];
     
-    UIColor *redColor = [UIColor colorWithRed:355.0f/255.0f
-                                        green:84.0/255.0f
-                                        blue:84.0/255.0f
-                                        alpha:1.0f];
+    UIViewController *trolleys = [[TrolleysViewController alloc]initWithNibName:@"TrolleysViewController" bundle:nil];
+    UINavigationController *ncTrolleys = [[UINavigationController alloc]initWithRootViewController:trolleys];
+    [ncTrolleys.navigationBar setBarTintColor:[UIColor redColor]];
+    
+    UIViewController *recursos = [[RecursosViewController alloc]initWithNibName:@"TrolleysViewController" bundle:nil];
+    UINavigationController *ncRecursos = [[UINavigationController alloc]initWithRootViewController:recursos];
+    [ncRecursos.navigationBar setBarTintColor:[UIColor redColor]];
     
     
-    [[mainTabBarController tabBar] setTintColor:redColor];
+    // Add navigation controllers to each tabitem
     
+    
+    tb.viewControllers = @[ncAlertas, ncTelefono, ncDesalojo, ncTrolleys, ncRecursos];
+    tb.tabBar.tintColor = [UIColor redColor];
+    
+    alertas.title  = @"Alertas";
+    telefono.title = @"Teléfonos";
+    desalojo.title = @"Desalojo";
+    trolleys.title = @"Trolleys";
+    recursos.title = @"Recursos";
+
     // Initialize Views
-    
-    [mainTabBarController setViewControllers:@[navigationViewController1, viewController2, viewController3, viewController4, viewController5]];
     
     // Set the icons
     
     // Item 0
     
-    [(UITabBarItem *)[mainTabBarController.tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"World-Icon"]];
+    [(UITabBarItem *)[tb.tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"World-Icon"]];
     
     // Item 1
-    [(UITabBarItem *)[mainTabBarController.tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"Phone-Icon"]];
+    [(UITabBarItem *)[tb.tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"Phone-Icon"]];
     
     // Item 2
-    [(UITabBarItem *)[mainTabBarController.tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"Route-Icon"]];
+    [(UITabBarItem *)[tb.tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"Route-Icon"]];
     
     // Item 3
-    [(UITabBarItem *)[mainTabBarController.tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"Trolley-Icon"]];
+    [(UITabBarItem *)[tb.tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"Trolley-Icon"]];
     
     // Item 4
-    [(UITabBarItem *)[mainTabBarController.tabBar.items objectAtIndex:4] setImage:[UIImage imageNamed:@"Services-Icon"]];
+    [(UITabBarItem *)[tb.tabBar.items objectAtIndex:4] setImage:[UIImage imageNamed:@"Services-Icon"]];
     
-    self.window.rootViewController = mainTabBarController;
+    
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:tb];
+    nc.navigationBar.tintColor = [UIColor whiteColor];
+
+    
+    // Descomentar cuando sepamos el color exacto
+    //UIColor *color = [self getUIColorObjectFromHexString:@"206691" alpha:0.9];
+    
+    self.window.rootViewController = tb;
     [self.window makeKeyAndVisible];
-     
-     
+    
     return YES;
+}
+
+- (unsigned int)intFromHexString:(NSString *)hexStr
+{
+    unsigned int hexInt = 0;
+    
+    // Create scanner
+    NSScanner *scanner = [NSScanner scannerWithString:hexStr];
+    
+    // Tell scanner to skip the # character
+    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"#"]];
+    
+    // Scan hex value
+    [scanner scanHexInt:&hexInt];
+    
+    return hexInt;
+}
+
+- (UIColor *)getUIColorObjectFromHexString:(NSString *)hexStr alpha:(CGFloat)alpha
+{
+    // Convert hex string to an integer
+    unsigned int hexint = [self intFromHexString:hexStr];
+    
+    // Create color object, specifying alpha as well
+    UIColor *color =
+    [UIColor colorWithRed:((CGFloat) ((hexint & 0xFF0000) >> 16))/255
+                    green:((CGFloat) ((hexint & 0xFF00) >> 8))/255
+                     blue:((CGFloat) (hexint & 0xFF))/255
+                    alpha:alpha];
+    
+    return color;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -96,3 +150,4 @@
 }
 
 @end
+
