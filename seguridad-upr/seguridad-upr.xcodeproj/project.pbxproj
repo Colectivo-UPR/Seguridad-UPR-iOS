@@ -28,6 +28,7 @@
 		CC2766CA19F492700061AC9A /* seguridad_uprTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2766C919F492700061AC9A /* seguridad_uprTests.m */; };
 		CC2DC9DD19FED94A00DB17F7 /* RecursosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2DC9DB19FED94A00DB17F7 /* RecursosViewController.m */; };
 		CC2DC9DE19FED94A00DB17F7 /* RecursosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC2DC9DC19FED94A00DB17F7 /* RecursosViewController.xib */; };
+		CCE239961A00385C00B92E03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CCE239951A00385C00B92E03 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		CC2DC9DA19FED94A00DB17F7 /* RecursosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecursosViewController.h; sourceTree = "<group>"; };
 		CC2DC9DB19FED94A00DB17F7 /* RecursosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecursosViewController.m; sourceTree = "<group>"; };
 		CC2DC9DC19FED94A00DB17F7 /* RecursosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RecursosViewController.xib; path = "seguridad-upr/RecursosViewController.xib"; sourceTree = "<group>"; };
+		CCE239951A00385C00B92E03 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		CC2766A119F492700061AC9A = {
 			isa = PBXGroup;
 			children = (
+				CCE239951A00385C00B92E03 /* Default-568h@2x.png */,
 				0A01077419FA0C84004C2056 /* Views */,
 				CC2766AC19F492700061AC9A /* seguridad-upr */,
 				CC2766C619F492700061AC9A /* seguridad-uprTests */,
@@ -320,6 +323,7 @@
 				0A01077919FA0CF7004C2056 /* TelefonosViewController.xib in Resources */,
 				0A01077319FA0C71004C2056 /* AlertasViewController.xib in Resources */,
 				0A01078319FA0D3C004C2056 /* TrolleysViewController.xib in Resources */,
+				CCE239961A00385C00B92E03 /* Default-568h@2x.png in Resources */,
 				CC2DC9DE19FED94A00DB17F7 /* RecursosViewController.xib in Resources */,
 				0A01077E19FA0D0D004C2056 /* DesalojoViewController.xib in Resources */,
 			);

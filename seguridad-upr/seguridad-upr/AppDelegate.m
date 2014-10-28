@@ -23,6 +23,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    CGRect screenBounds = [[UIScreen mainScreen]bounds];
+    
+    UIWindow *window = [[UIWindow alloc]initWithFrame:screenBounds];
+    
+    [self setWindow:window];
 
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -79,6 +85,7 @@
     // Item 3
     [(UITabBarItem *)[tb.tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"Trolley-Icon"]];
     
+    
     // Item 4
     [(UITabBarItem *)[tb.tabBar.items objectAtIndex:4] setImage:[UIImage imageNamed:@"Services-Icon"]];
     
@@ -90,7 +97,7 @@
     // Descomentar cuando sepamos el color exacto
     //UIColor *color = [self getUIColorObjectFromHexString:@"206691" alpha:0.9];
     
-    self.window.rootViewController = tb;
+    [self.window setRootViewController:tb];
     [self.window makeKeyAndVisible];
     
     return YES;
