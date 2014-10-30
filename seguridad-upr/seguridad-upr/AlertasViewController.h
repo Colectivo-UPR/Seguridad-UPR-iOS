@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AlertasViewController : UIViewController
+@interface AlertasViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIBarButtonItem *connect;
 

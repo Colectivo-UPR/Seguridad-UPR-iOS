@@ -8,12 +8,13 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "HomeViewController.h"
 #import "AlertasViewController.h"
 #import "DesalojoViewController.h"
 #import "TelefonosViewController.h"
 #import "TrolleysViewController.h"
 #import "RecursosViewController.h"
+#import "NuevaAlertaViewController.h"
+
 
 @interface AppDelegate ()
 
@@ -77,7 +78,7 @@
     [(UITabBarItem *)[tb.tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"World-Icon"]];
     
     // Item 1
-    [(UITabBarItem *)[tb.tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"Phone-Icon"]];
+    [(UITabBarItem *)[tb.tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"Phone-icon"]];
     
     // Item 2
     [(UITabBarItem *)[tb.tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"Route-Icon"]];
@@ -87,7 +88,7 @@
     
     
     // Item 4
-    [(UITabBarItem *)[tb.tabBar.items objectAtIndex:4] setImage:[UIImage imageNamed:@"Services-Icon"]];
+    [(UITabBarItem *)[tb.tabBar.items objectAtIndex:4] setImage:[UIImage imageNamed:@"Services-icon"]];
     
     
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:tb];

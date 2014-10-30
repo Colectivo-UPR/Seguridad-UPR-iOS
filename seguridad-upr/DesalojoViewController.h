@@ -10,4 +10,6 @@
 
 @interface DesalojoViewController : UIViewController
 
+@property (strong, nonatomic) UIBarButtonItem *connect;
+
 @end

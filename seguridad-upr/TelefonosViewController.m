@@ -18,6 +18,13 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
         self.title = @"Teléfonos";
+
+        self.connect = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(didTapConnect:)];
+        self.connect.tintColor = [UIColor whiteColor];
+        [self.connect setImage:[UIImage imageNamed:@"post.png"]];
+        self.navigationItem.rightBarButtonItem = self.connect;
+        
+        self.view.tintColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -25,6 +32,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)didTapConnect:(id)sender{
+    
 }
 
 - (void)didReceiveMemoryWarning {

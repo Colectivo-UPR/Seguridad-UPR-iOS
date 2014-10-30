@@ -11,7 +11,6 @@
 		0A01076419F945B2004C2056 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01075D19F945B2004C2056 /* NSArray+PureLayout.m */; };
 		0A01076519F945B2004C2056 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01075F19F945B2004C2056 /* NSLayoutConstraint+PureLayout.m */; };
 		0A01076919F9467F004C2056 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01076819F9467F004C2056 /* CustomCell.m */; };
-		0A01076C19F9E47F004C2056 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01076B19F9E47F004C2056 /* HomeViewController.m */; };
 		0A01076E19F9F35E004C2056 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A01076D19F9F35E004C2056 /* CustomCell.xib */; };
 		0A01077219FA0C71004C2056 /* AlertasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01077019FA0C71004C2056 /* AlertasViewController.m */; };
 		0A01077319FA0C71004C2056 /* AlertasViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A01077119FA0C71004C2056 /* AlertasViewController.xib */; };
@@ -21,6 +20,8 @@
 		0A01077E19FA0D0D004C2056 /* DesalojoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A01077C19FA0D0D004C2056 /* DesalojoViewController.xib */; };
 		0A01078219FA0D3C004C2056 /* TrolleysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01078019FA0D3C004C2056 /* TrolleysViewController.m */; };
 		0A01078319FA0D3C004C2056 /* TrolleysViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A01078119FA0D3C004C2056 /* TrolleysViewController.xib */; };
+		0AFEC60A1A00897100B1B823 /* NuevaAlertaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEC6081A00897100B1B823 /* NuevaAlertaViewController.m */; };
+		0AFEC60B1A00897100B1B823 /* NuevaAlertaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AFEC6091A00897100B1B823 /* NuevaAlertaViewController.xib */; };
 		CC2766B019F492700061AC9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2766AF19F492700061AC9A /* main.m */; };
 		CC2766B319F492700061AC9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2766B219F492700061AC9A /* AppDelegate.m */; };
 		CC2766B619F492700061AC9A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2766B519F492700061AC9A /* ViewController.m */; };
@@ -53,8 +54,6 @@
 		0A01076219F945B2004C2056 /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
 		0A01076719F9467F004C2056 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCell.h; path = ../CustomCell.h; sourceTree = "<group>"; };
 		0A01076819F9467F004C2056 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCell.m; path = ../CustomCell.m; sourceTree = "<group>"; };
-		0A01076A19F9E47F004C2056 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		0A01076B19F9E47F004C2056 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		0A01076D19F9F35E004C2056 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCell.xib; path = "seguridad-upr/CustomCell.xib"; sourceTree = "<group>"; };
 		0A01076F19FA0C70004C2056 /* AlertasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertasViewController.h; sourceTree = "<group>"; };
 		0A01077019FA0C71004C2056 /* AlertasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertasViewController.m; sourceTree = "<group>"; };
@@ -68,6 +67,9 @@
 		0A01077F19FA0D3C004C2056 /* TrolleysViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrolleysViewController.h; path = ../TrolleysViewController.h; sourceTree = "<group>"; };
 		0A01078019FA0D3C004C2056 /* TrolleysViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrolleysViewController.m; path = ../TrolleysViewController.m; sourceTree = "<group>"; };
 		0A01078119FA0D3C004C2056 /* TrolleysViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrolleysViewController.xib; sourceTree = "<group>"; };
+		0AFEC6071A00897100B1B823 /* NuevaAlertaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NuevaAlertaViewController.h; path = ../NuevaAlertaViewController.h; sourceTree = "<group>"; };
+		0AFEC6081A00897100B1B823 /* NuevaAlertaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NuevaAlertaViewController.m; path = ../NuevaAlertaViewController.m; sourceTree = "<group>"; };
+		0AFEC6091A00897100B1B823 /* NuevaAlertaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NuevaAlertaViewController.xib; sourceTree = "<group>"; };
 		CC2766AA19F492700061AC9A /* seguridad-upr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "seguridad-upr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC2766AE19F492700061AC9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC2766AF19F492700061AC9A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				CC2DC9DC19FED94A00DB17F7 /* RecursosViewController.xib */,
 				0A01077119FA0C71004C2056 /* AlertasViewController.xib */,
 				0A01077C19FA0D0D004C2056 /* DesalojoViewController.xib */,
+				0AFEC6091A00897100B1B823 /* NuevaAlertaViewController.xib */,
 				0A01078119FA0D3C004C2056 /* TrolleysViewController.xib */,
 				0A01077719FA0CF7004C2056 /* TelefonosViewController.xib */,
 				0A01076D19F9F35E004C2056 /* CustomCell.xib */,
@@ -206,9 +209,10 @@
 				CC2DC9DA19FED94A00DB17F7 /* RecursosViewController.h */,
 				CC2DC9DB19FED94A00DB17F7 /* RecursosViewController.m */,
 				CC2766B419F492700061AC9A /* ViewController.h */,
+				0AFEC6071A00897100B1B823 /* NuevaAlertaViewController.h */,
+				0AFEC6081A00897100B1B823 /* NuevaAlertaViewController.m */,
 				0A01076719F9467F004C2056 /* CustomCell.h */,
 				0A01076819F9467F004C2056 /* CustomCell.m */,
-				0A01076A19F9E47F004C2056 /* HomeViewController.h */,
 				0A01076F19FA0C70004C2056 /* AlertasViewController.h */,
 				0A01077A19FA0D0D004C2056 /* DesalojoViewController.h */,
 				0A01077B19FA0D0D004C2056 /* DesalojoViewController.m */,
@@ -217,7 +221,6 @@
 				0A01077519FA0CF7004C2056 /* TelefonosViewController.h */,
 				0A01077619FA0CF7004C2056 /* TelefonosViewController.m */,
 				0A01077019FA0C71004C2056 /* AlertasViewController.m */,
-				0A01076B19F9E47F004C2056 /* HomeViewController.m */,
 				CC2766B519F492700061AC9A /* ViewController.m */,
 			);
 			name = Controllers;
@@ -321,6 +324,7 @@
 				0A01076E19F9F35E004C2056 /* CustomCell.xib in Resources */,
 				CC2766BB19F492700061AC9A /* Images.xcassets in Resources */,
 				0A01077919FA0CF7004C2056 /* TelefonosViewController.xib in Resources */,
+				0AFEC60B1A00897100B1B823 /* NuevaAlertaViewController.xib in Resources */,
 				0A01077319FA0C71004C2056 /* AlertasViewController.xib in Resources */,
 				0A01078319FA0D3C004C2056 /* TrolleysViewController.xib in Resources */,
 				CCE239961A00385C00B92E03 /* Default-568h@2x.png in Resources */,
@@ -348,6 +352,7 @@
 				0A01077D19FA0D0D004C2056 /* DesalojoViewController.m in Sources */,
 				CC2766B319F492700061AC9A /* AppDelegate.m in Sources */,
 				CC2766B019F492700061AC9A /* main.m in Sources */,
+				0AFEC60A1A00897100B1B823 /* NuevaAlertaViewController.m in Sources */,
 				CC2DC9DD19FED94A00DB17F7 /* RecursosViewController.m in Sources */,
 				0A01076319F945B2004C2056 /* ALView+PureLayout.m in Sources */,
 				0A01077819FA0CF7004C2056 /* TelefonosViewController.m in Sources */,
@@ -355,7 +360,6 @@
 				0A01076919F9467F004C2056 /* CustomCell.m in Sources */,
 				0A01076419F945B2004C2056 /* NSArray+PureLayout.m in Sources */,
 				0A01076519F945B2004C2056 /* NSLayoutConstraint+PureLayout.m in Sources */,
-				0A01076C19F9E47F004C2056 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

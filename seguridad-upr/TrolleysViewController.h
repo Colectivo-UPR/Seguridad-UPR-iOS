@@ -10,4 +10,6 @@
 
 @interface TrolleysViewController : UIViewController
 
+@property (strong, nonatomic) UIBarButtonItem *connect;
+
 @end
