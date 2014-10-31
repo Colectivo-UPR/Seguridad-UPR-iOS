@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DesalojoViewController : UIViewController
+@interface DesalojoViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIBarButtonItem *connect;
 

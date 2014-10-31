@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TrolleysViewController : UIViewController
+@interface TrolleysViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIBarButtonItem *connect;
 

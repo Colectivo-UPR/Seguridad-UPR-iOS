@@ -33,9 +33,13 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SFX-fR-g0r">
+                        <rect key="frame" x="343" y="14" width="47" height="45"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="icon" destination="SFX-fR-g0r" id="VPz-PQ-Dil"/>
                 <outlet property="infoLabel" destination="o4a-vC-mav" id="b9k-pD-i7l"/>
                 <outlet property="nameLabel" destination="9yB-rp-DGI" id="6o2-pm-0aW"/>
                 <outlet property="prepTimeLabel" destination="H5P-bD-1cO" id="KAc-oo-Xvw"/>

@@ -35,6 +35,8 @@
         self.infoLabel.textColor = [UIColor blackColor];
         self.infoLabel.font = [UIFont fontWithName:@"Arial" size:12.0f];
         
+        self.icon = [[UIImageView alloc]initWithFrame:CGRectMake(280, 20, 15, 20)];
+        
         self.thumbnailImageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, 20, 30, 30)];
         
     }
@@ -43,6 +45,7 @@
     [self addSubview:prepTimeLabel];
     [self addSubview:self.infoLabel];
     [self addSubview:thumbnailImageView]; 
+    [self addSubview:self.icon];
     
     return self;
 }

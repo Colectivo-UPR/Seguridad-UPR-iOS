@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecursosViewController : UIViewController
+@interface RecursosViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIBarButtonItem *connect;
 

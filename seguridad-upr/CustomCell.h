@@ -19,5 +19,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *prepTimeLabel;
 @property (nonatomic, strong) IBOutlet UILabel *infoLabel;
 @property (nonatomic, strong) IBOutlet UIImageView *thumbnailImageView;
+@property (nonatomic, strong) IBOutlet UIImageView *icon;
+
 
 @end

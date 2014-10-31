@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TelefonosViewController : UIViewController
+@interface TelefonosViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIBarButtonItem *connect;
 
