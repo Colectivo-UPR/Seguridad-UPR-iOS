@@ -98,6 +98,11 @@
     // Descomentar cuando sepamos el color exacto
     //UIColor *color = [self getUIColorObjectFromHexString:@"206691" alpha:0.9];
     
+    UIButton *alertButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 10, 300, 30)];
+    alertButton.titleLabel.text = @"Someter Alerta";
+    alertButton.backgroundColor = [UIColor blackColor];
+    
+    [self.window addSubview:alertButton]; 
     [self.window setRootViewController:tb];
     [self.window makeKeyAndVisible];
     

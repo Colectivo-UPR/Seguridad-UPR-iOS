@@ -21,13 +21,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         
-//        self.connect = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(didTapConnect:)];
-//        self.connect.tintColor = [UIColor whiteColor];
-//        [self.connect setImage:[UIImage imageNamed:@"post.png"]];
-//        self.navigationItem.rightBarButtonItem = self.connect;
-        
         self.title = @"Alertas";
-        
         self.view.tintColor = [UIColor whiteColor];
 
         
@@ -44,6 +38,11 @@
     
     tableView.backgroundColor = [UIColor whiteColor];
     
+    self.alertButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 10, 300, 30)];
+    self.alertButton.titleLabel.text = @"Someter Alerta";
+    self.alertButton.backgroundColor = [UIColor blackColor];
+
+    [self.view addSubview:self.alertButton];
     [self.view addSubview:tableView];
     
 }
