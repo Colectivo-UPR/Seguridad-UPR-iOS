@@ -41,6 +41,8 @@
     NSString *fullURL = @"http://calm-caverns-5184.herokuapp.com/";
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    
+    [mapView sizeThatFits:CGSizeMake(320, 160)];
     [mapView loadRequest:requestObj];
     
     [self.view addSubview:tableView];
