@@ -37,6 +37,11 @@
     
     tableView.backgroundColor = [UIColor whiteColor];
     
+    UIImage *img = [UIImage imageNamed:@"post.png"];
+    self.alertButton = [[UIBarButtonItem alloc]initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
+    self.alertButton.tintColor = [UIColor whiteColor];
+    
+    self.navigationItem.rightBarButtonItem = self.alertButton;
     
     
     [self.view addSubview:tableView];
@@ -44,9 +49,9 @@
 }
 
 - (void)didTapConnect:(id)sender {
-    UIViewController *newAlert = [[UITableViewController alloc]init];
-    
-    [self presentViewController:newAlert animated:YES completion:nil];
+//    UIViewController *newAlert = [[UITableViewController alloc]init];
+//    
+//    [self presentViewController:newAlert animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

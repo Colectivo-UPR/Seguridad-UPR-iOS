@@ -38,12 +38,18 @@
     tableView.backgroundColor = [UIColor whiteColor];
     
     mapView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 60, 320, 160)];
-    NSString *fullURL = @"http://calm-caverns-5184.herokuapp.com/";
+    NSString *fullURL = @"http://iupi-map.herokuapp.com/";
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     
     [mapView sizeThatFits:CGSizeMake(320, 160)];
     [mapView loadRequest:requestObj];
+
+    UIImage *img = [UIImage imageNamed:@"post.png"];
+    self.alertButton = [[UIBarButtonItem alloc]initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
+    self.alertButton.tintColor = [UIColor whiteColor];
+    
+    self.navigationItem.rightBarButtonItem = self.alertButton;
     
     [self.view addSubview:tableView];
     [self.view addSubview:mapView]; 
@@ -52,9 +58,9 @@
 }
 
 - (void)didTapConnect:(id)sender {
-    UIViewController *newAlert = [[UITableViewController alloc]init];
-    
-    [self presentViewController:newAlert animated:YES completion:nil];
+//    UIViewController *newAlert = [[UITableViewController alloc]init];
+//    
+//    [self presentViewController:newAlert animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

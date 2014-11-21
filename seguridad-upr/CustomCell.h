@@ -21,5 +21,4 @@
 @property (nonatomic, strong) IBOutlet UIImageView *thumbnailImageView;
 @property (nonatomic, strong) IBOutlet UIImageView *icon;
 
-
 @end

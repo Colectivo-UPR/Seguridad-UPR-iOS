@@ -20,6 +20,7 @@
 		0A01077E19FA0D0D004C2056 /* DesalojoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A01077C19FA0D0D004C2056 /* DesalojoViewController.xib */; };
 		0A01078219FA0D3C004C2056 /* TrolleysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01078019FA0D3C004C2056 /* TrolleysViewController.m */; };
 		0A01078319FA0D3C004C2056 /* TrolleysViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A01078119FA0D3C004C2056 /* TrolleysViewController.xib */; };
+		0ADEBE821A1EE0C50051FB83 /* HTTPRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADEBE811A1EE0C50051FB83 /* HTTPRequestsViewController.m */; };
 		0AFEC60A1A00897100B1B823 /* NuevaAlertaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEC6081A00897100B1B823 /* NuevaAlertaViewController.m */; };
 		0AFEC60B1A00897100B1B823 /* NuevaAlertaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AFEC6091A00897100B1B823 /* NuevaAlertaViewController.xib */; };
 		CC2766B019F492700061AC9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2766AF19F492700061AC9A /* main.m */; };
@@ -67,6 +68,8 @@
 		0A01077F19FA0D3C004C2056 /* TrolleysViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrolleysViewController.h; path = ../TrolleysViewController.h; sourceTree = "<group>"; };
 		0A01078019FA0D3C004C2056 /* TrolleysViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrolleysViewController.m; path = ../TrolleysViewController.m; sourceTree = "<group>"; };
 		0A01078119FA0D3C004C2056 /* TrolleysViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrolleysViewController.xib; sourceTree = "<group>"; };
+		0ADEBE801A1EE0C50051FB83 /* HTTPRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPRequestsViewController.h; sourceTree = "<group>"; };
+		0ADEBE811A1EE0C50051FB83 /* HTTPRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRequestsViewController.m; sourceTree = "<group>"; };
 		0AFEC6071A00897100B1B823 /* NuevaAlertaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NuevaAlertaViewController.h; path = ../NuevaAlertaViewController.h; sourceTree = "<group>"; };
 		0AFEC6081A00897100B1B823 /* NuevaAlertaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NuevaAlertaViewController.m; path = ../NuevaAlertaViewController.m; sourceTree = "<group>"; };
 		0AFEC6091A00897100B1B823 /* NuevaAlertaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NuevaAlertaViewController.xib; sourceTree = "<group>"; };
@@ -229,6 +232,8 @@
 		CC2766D919F4B7EC0061AC9A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				0ADEBE801A1EE0C50051FB83 /* HTTPRequestsViewController.h */,
+				0ADEBE811A1EE0C50051FB83 /* HTTPRequestsViewController.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 				TargetAttributes = {
 					CC2766A919F492700061AC9A = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = Q3V6M53UC2;
 					};
 					CC2766C219F492700061AC9A = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -357,6 +363,7 @@
 				0A01076319F945B2004C2056 /* ALView+PureLayout.m in Sources */,
 				0A01077819FA0CF7004C2056 /* TelefonosViewController.m in Sources */,
 				0A01077219FA0C71004C2056 /* AlertasViewController.m in Sources */,
+				0ADEBE821A1EE0C50051FB83 /* HTTPRequestsViewController.m in Sources */,
 				0A01076919F9467F004C2056 /* CustomCell.m in Sources */,
 				0A01076419F945B2004C2056 /* NSArray+PureLayout.m in Sources */,
 				0A01076519F945B2004C2056 /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -462,6 +469,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "seguridad-upr/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -473,6 +481,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "seguridad-upr/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

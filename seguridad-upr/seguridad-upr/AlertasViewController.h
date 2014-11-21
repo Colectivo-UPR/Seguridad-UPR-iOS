@@ -11,6 +11,6 @@
 @interface AlertasViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIBarButtonItem *connect;
-@property (strong, nonatomic) UIButton *alertButton; 
+@property (strong, nonatomic) UIBarButtonItem *alertButton;
 
 @end

@@ -9,6 +9,7 @@
 #import "AlertasViewController.h"
 #import "NuevaAlertaViewController.h"
 #import "CustomCell.h"
+#import "HTTPRequestsViewController.h"
 
 @interface AlertasViewController ()
 
@@ -16,6 +17,8 @@
 
 @implementation AlertasViewController {
     UITableView *tableView;
+}
+- (IBAction)alertButton:(id)sender {
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -37,20 +40,20 @@
     tableView.dataSource = self;
     
     tableView.backgroundColor = [UIColor whiteColor];
-    
-    self.alertButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 10, 300, 30)];
-    self.alertButton.titleLabel.text = @"Someter Alerta";
-    self.alertButton.backgroundColor = [UIColor blackColor];
 
-    [self.view addSubview:self.alertButton];
+    UIImage *img = [UIImage imageNamed:@"post.png"];
+    
+    self.alertButton = [[UIBarButtonItem alloc]initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
+    self.alertButton.tintColor = [UIColor whiteColor];
+
+    self.navigationItem.rightBarButtonItem = self.alertButton;
     [self.view addSubview:tableView];
     
 }
 
 - (void)didTapConnect:(id)sender {
-    UIViewController *newAlert = [[NuevaAlertaViewController alloc]init];
-    
-    [self presentViewController:newAlert animated:YES completion:nil];
+//    UIViewController *newAlert = [[NuevaAlertaViewController alloc]initWithNibName:@"NuevaAlertaViewController" bundle:nil];
+//    [self presentViewController:newAlert animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

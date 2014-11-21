@@ -11,5 +11,6 @@
 @interface TrolleysViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIBarButtonItem *connect;
+@property (strong, nonatomic) UIBarButtonItem *alertButton;
 
 @end
