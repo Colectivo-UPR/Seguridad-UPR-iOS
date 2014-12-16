@@ -8,7 +8,7 @@
 
 #import "TelefonosViewController.h"
 #import "CustomCell.h"
-
+#import "NuevaAlertaViewController.h"
 
 
 @interface TelefonosViewController ()
@@ -60,9 +60,9 @@
 }
 
 - (void)didTapConnect:(id)sender {
-//    UIViewController *newAlert = [[UITableViewController alloc]init];
-//    
-//    [self presentViewController:newAlert animated:YES completion:nil];
+    NuevaAlertaViewController *newAlert = [[NuevaAlertaViewController alloc]init];
+    
+    [self presentViewController:newAlert animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

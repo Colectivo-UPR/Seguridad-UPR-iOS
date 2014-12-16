@@ -32,6 +32,7 @@
     [super viewDidLoad];
     
     tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 60, 330, 500) style:UITableViewStylePlain];
+    tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     tableView.delegate = self;
     tableView.dataSource = self;
     

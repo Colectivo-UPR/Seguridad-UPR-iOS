@@ -10,6 +10,7 @@
 #import "NuevaAlertaViewController.h"
 #import "CustomCell.h"
 #import "HTTPRequestsViewController.h"
+#import "AppDelegate.h"
 
 @interface AlertasViewController ()
 
@@ -18,6 +19,7 @@
 @implementation AlertasViewController {
     UITableView *tableView;
 }
+
 - (IBAction)alertButton:(id)sender {
 }
 
@@ -41,19 +43,21 @@
     
     tableView.backgroundColor = [UIColor whiteColor];
 
-    UIImage *img = [UIImage imageNamed:@"post.png"];
-    
-    self.alertButton = [[UIBarButtonItem alloc]initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
-    self.alertButton.tintColor = [UIColor whiteColor];
-
-    self.navigationItem.rightBarButtonItem = self.alertButton;
+//    UIImage *img = [UIImage imageNamed:@"post.png"];
+//    
+//    self.alertButton = [[UIBarButtonItem alloc]initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
+//    self.alertButton.tintColor = [UIColor whiteColor];
+//
+//    self.navigationItem.rightBarButtonItem = self.alertButton;
     [self.view addSubview:tableView];
     
 }
 
 - (void)didTapConnect:(id)sender {
-//    UIViewController *newAlert = [[NuevaAlertaViewController alloc]initWithNibName:@"NuevaAlertaViewController" bundle:nil];
-//    [self presentViewController:newAlert animated:YES completion:nil];
+
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    UIViewController *newAlert = [[NuevaAlertaViewController alloc]initWithNibName:@"NuevaAlertaViewController" bundle:nil];
+    delegate.window.rootViewController = newAlert;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,7 +87,6 @@
 }
 
 - (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     
 }
 

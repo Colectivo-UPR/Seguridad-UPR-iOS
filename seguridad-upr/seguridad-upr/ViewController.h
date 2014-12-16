@@ -10,6 +10,7 @@
 
 @interface ViewController : UIViewController
 
+@property UIBarButtonItem *alertButton; 
 
 @end
 

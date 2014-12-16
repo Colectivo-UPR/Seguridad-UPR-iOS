@@ -20,6 +20,12 @@
 		0A01077E19FA0D0D004C2056 /* DesalojoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A01077C19FA0D0D004C2056 /* DesalojoViewController.xib */; };
 		0A01078219FA0D3C004C2056 /* TrolleysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01078019FA0D3C004C2056 /* TrolleysViewController.m */; };
 		0A01078319FA0D3C004C2056 /* TrolleysViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A01078119FA0D3C004C2056 /* TrolleysViewController.xib */; };
+		0A1DDBAC1A407FCA00422671 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1DDBAA1A407FCA00422671 /* LoginViewController.m */; };
+		0A1DDBAD1A407FCA00422671 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1DDBAB1A407FCA00422671 /* LoginViewController.xib */; };
+		0A1DDBB01A40884300422671 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1DDBAF1A40884300422671 /* ViewController.xib */; };
+		0A876F7D1A3125C800A49B48 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A876F7C1A3125C800A49B48 /* RegisterViewController.m */; };
+		0A876F811A312D5400A49B48 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A876F801A312D5400A49B48 /* RegisterViewController.xib */; };
+		0AC5A01F1A3943FA00727BD5 /* BG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC5A01E1A3943FA00727BD5 /* BG.png */; };
 		0ADEBE821A1EE0C50051FB83 /* HTTPRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADEBE811A1EE0C50051FB83 /* HTTPRequestsViewController.m */; };
 		0AFEC60A1A00897100B1B823 /* NuevaAlertaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEC6081A00897100B1B823 /* NuevaAlertaViewController.m */; };
 		0AFEC60B1A00897100B1B823 /* NuevaAlertaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AFEC6091A00897100B1B823 /* NuevaAlertaViewController.xib */; };
@@ -68,6 +74,14 @@
 		0A01077F19FA0D3C004C2056 /* TrolleysViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrolleysViewController.h; path = ../TrolleysViewController.h; sourceTree = "<group>"; };
 		0A01078019FA0D3C004C2056 /* TrolleysViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrolleysViewController.m; path = ../TrolleysViewController.m; sourceTree = "<group>"; };
 		0A01078119FA0D3C004C2056 /* TrolleysViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrolleysViewController.xib; sourceTree = "<group>"; };
+		0A1DDBA91A407FCA00422671 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		0A1DDBAA1A407FCA00422671 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		0A1DDBAB1A407FCA00422671 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = "seguridad-upr/LoginViewController.xib"; sourceTree = "<group>"; };
+		0A1DDBAF1A40884300422671 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController.xib; path = "seguridad-upr/ViewController.xib"; sourceTree = "<group>"; };
+		0A876F7B1A3125C800A49B48 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		0A876F7C1A3125C800A49B48 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		0A876F801A312D5400A49B48 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		0AC5A01E1A3943FA00727BD5 /* BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG.png; sourceTree = "<group>"; };
 		0ADEBE801A1EE0C50051FB83 /* HTTPRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPRequestsViewController.h; sourceTree = "<group>"; };
 		0ADEBE811A1EE0C50051FB83 /* HTTPRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRequestsViewController.m; sourceTree = "<group>"; };
 		0AFEC6071A00897100B1B823 /* NuevaAlertaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NuevaAlertaViewController.h; path = ../NuevaAlertaViewController.h; sourceTree = "<group>"; };
@@ -130,10 +144,14 @@
 				CC2DC9DC19FED94A00DB17F7 /* RecursosViewController.xib */,
 				0A01077119FA0C71004C2056 /* AlertasViewController.xib */,
 				0A01077C19FA0D0D004C2056 /* DesalojoViewController.xib */,
+				0A876F801A312D5400A49B48 /* RegisterViewController.xib */,
 				0AFEC6091A00897100B1B823 /* NuevaAlertaViewController.xib */,
 				0A01078119FA0D3C004C2056 /* TrolleysViewController.xib */,
 				0A01077719FA0CF7004C2056 /* TelefonosViewController.xib */,
+				0A1DDBAB1A407FCA00422671 /* LoginViewController.xib */,
 				0A01076D19F9F35E004C2056 /* CustomCell.xib */,
+				0AC5A01E1A3943FA00727BD5 /* BG.png */,
+				0A1DDBAF1A40884300422671 /* ViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -212,6 +230,8 @@
 				CC2DC9DA19FED94A00DB17F7 /* RecursosViewController.h */,
 				CC2DC9DB19FED94A00DB17F7 /* RecursosViewController.m */,
 				CC2766B419F492700061AC9A /* ViewController.h */,
+				0A876F7C1A3125C800A49B48 /* RegisterViewController.m */,
+				0A876F7B1A3125C800A49B48 /* RegisterViewController.h */,
 				0AFEC6071A00897100B1B823 /* NuevaAlertaViewController.h */,
 				0AFEC6081A00897100B1B823 /* NuevaAlertaViewController.m */,
 				0A01076719F9467F004C2056 /* CustomCell.h */,
@@ -225,6 +245,8 @@
 				0A01077619FA0CF7004C2056 /* TelefonosViewController.m */,
 				0A01077019FA0C71004C2056 /* AlertasViewController.m */,
 				CC2766B519F492700061AC9A /* ViewController.m */,
+				0A1DDBA91A407FCA00422671 /* LoginViewController.h */,
+				0A1DDBAA1A407FCA00422671 /* LoginViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -328,11 +350,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A01076E19F9F35E004C2056 /* CustomCell.xib in Resources */,
+				0A876F811A312D5400A49B48 /* RegisterViewController.xib in Resources */,
 				CC2766BB19F492700061AC9A /* Images.xcassets in Resources */,
 				0A01077919FA0CF7004C2056 /* TelefonosViewController.xib in Resources */,
 				0AFEC60B1A00897100B1B823 /* NuevaAlertaViewController.xib in Resources */,
+				0A1DDBB01A40884300422671 /* ViewController.xib in Resources */,
+				0AC5A01F1A3943FA00727BD5 /* BG.png in Resources */,
 				0A01077319FA0C71004C2056 /* AlertasViewController.xib in Resources */,
 				0A01078319FA0D3C004C2056 /* TrolleysViewController.xib in Resources */,
+				0A1DDBAD1A407FCA00422671 /* LoginViewController.xib in Resources */,
 				CCE239961A00385C00B92E03 /* Default-568h@2x.png in Resources */,
 				CC2DC9DE19FED94A00DB17F7 /* RecursosViewController.xib in Resources */,
 				0A01077E19FA0D0D004C2056 /* DesalojoViewController.xib in Resources */,
@@ -361,8 +387,10 @@
 				0AFEC60A1A00897100B1B823 /* NuevaAlertaViewController.m in Sources */,
 				CC2DC9DD19FED94A00DB17F7 /* RecursosViewController.m in Sources */,
 				0A01076319F945B2004C2056 /* ALView+PureLayout.m in Sources */,
+				0A1DDBAC1A407FCA00422671 /* LoginViewController.m in Sources */,
 				0A01077819FA0CF7004C2056 /* TelefonosViewController.m in Sources */,
 				0A01077219FA0C71004C2056 /* AlertasViewController.m in Sources */,
+				0A876F7D1A3125C800A49B48 /* RegisterViewController.m in Sources */,
 				0ADEBE821A1EE0C50051FB83 /* HTTPRequestsViewController.m in Sources */,
 				0A01076919F9467F004C2056 /* CustomCell.m in Sources */,
 				0A01076419F945B2004C2056 /* NSArray+PureLayout.m in Sources */,
