@@ -43,21 +43,27 @@
     
     tableView.backgroundColor = [UIColor whiteColor];
 
-//    UIImage *img = [UIImage imageNamed:@"post.png"];
-//    
-//    self.alertButton = [[UIBarButtonItem alloc]initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
-//    self.alertButton.tintColor = [UIColor whiteColor];
-//
-//    self.navigationItem.rightBarButtonItem = self.alertButton;
+    UIImage *img = [UIImage imageNamed:@"post.png"];
+    
+    self.alertButton = [[UIBarButtonItem alloc]initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
+    self.alertButton.tintColor = [UIColor whiteColor];
+
+    self.navigationItem.rightBarButtonItem = self.alertButton;
     [self.view addSubview:tableView];
     
+    self.incidents = [[NSDictionary alloc]init];
+    self.delegate = [[UIApplication sharedApplication]delegate];
+    
+}
+
+-(void)viewWillAppear {
+    [self reloadInputViews];
 }
 
 - (void)didTapConnect:(id)sender {
 
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     UIViewController *newAlert = [[NuevaAlertaViewController alloc]initWithNibName:@"NuevaAlertaViewController" bundle:nil];
-    delegate.window.rootViewController = newAlert;
+    self.delegate.window.rootViewController = newAlert;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,20 +74,23 @@
 
 -(NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section {
 
-    return 10;
+    return self.incidents.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
- 
     CustomCell *cell = (CustomCell *)[theTableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
         cell = [[CustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
-    
-    cell.nameLabel.text = @"Roban a Corrada";
-    cell.prepTimeLabel.text = @"Oct 9 a las 12:00 am";
-    cell.infoLabel.text = @"A el profesor Carlos Corrada lo asaltaron a las 12:00 am mientras caminaba por el Centro de Estudiantes";
-    cell.thumbnailImageView.image = [UIImage imageNamed:@"map.png"];
+    NSLog(@"temp %@", self.delegate.incidents);
+    if (self.incidents.count > 0) {
+        
+//        cell.nameLabel.text = [[temp objectAtIndex:indexPath.row]valueForKey:@"title"];
+//        cell.prepTimeLabel.text = [temp valueForKey:@"incident_date"];
+//        cell.infoLabel.text = [temp valueForKey:@"message"];
+        cell.thumbnailImageView.image = [UIImage imageNamed:@"map.png"];
+
+    }
     
     return cell;
 }

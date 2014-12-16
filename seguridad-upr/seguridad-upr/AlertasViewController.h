@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 @interface AlertasViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIBarButtonItem *connect;
 @property (strong, nonatomic) UIBarButtonItem *alertButton;
+
+@property AppDelegate *delegate; 
+@property NSDictionary *incidents; 
+
 
 @end

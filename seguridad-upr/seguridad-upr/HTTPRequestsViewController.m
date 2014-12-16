@@ -8,6 +8,7 @@
 
 #import "HTTPRequestsViewController.h"
 #import "ViewController.h"
+#import "AlertasViewController.h"
 #import "AppDelegate.h"
 
 @interface HTTPRequestsViewController ()
@@ -30,8 +31,7 @@
 
 
 -(void)postNews:(NSString *)msg title:(NSString *)title date:(NSString *)date building:(NSString *)building {
-    _token = @"pbkdf2_sha256$12000$IGFCloD5XNtL$v/deQLvImro91jSTiNVFnKcPkArE1JzxHyggVzXK8+o=";
-    NSURL *URL = [NSURL URLWithString:@"http://54.172.3.196:8000/noticias/"];
+    NSURL *URL = [NSURL URLWithString:@"http://54.172.3.196:8000/create-incident/"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     // Set request type
     request.HTTPMethod = @"POST";
@@ -41,7 +41,8 @@
     
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:[NSString stringWithFormat:@"%lu", (unsigned long)[data length]] forHTTPHeaderField:@"Content-Length"];
-    [request addValue:[NSString stringWithFormat:@"%@", _token] forHTTPHeaderField:@"Authorization"];
+    
+    [request addValue:[NSString stringWithFormat:@"Token %@", [[NSUserDefaults standardUserDefaults]valueForKey:@"token"]] forHTTPHeaderField:@"Authorization"];
     [request setHTTPBody:data];
     
     // Send the request
@@ -110,8 +111,11 @@
         NSLog(@"Response: %@", result);
         [[NSUserDefaults standardUserDefaults] setValue:[dict valueForKey:@"token"] forKey:@"token"];
         
+        [self getNews];
+        
         AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
         ViewController *views = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
+        
         delegate.window.rootViewController = views;
         //here you get the response
     }
@@ -122,19 +126,37 @@
 -(void)getNews {
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         [request setHTTPMethod:@"GET"];
-        [request setURL:[NSURL URLWithString:@"http://54.172.3.196:8000/noticias/"]];
-        
+        [request setURL:[NSURL URLWithString:@"http://54.172.3.196:8000/incidents/"]];
+        [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+        NSString *token = [[NSString alloc]initWithString:[[NSUserDefaults standardUserDefaults]stringForKey:@"token"]];
+    
+        NSLog(@"token: %@", token);
+        [request addValue:[NSString stringWithFormat:@"Token %@",token] forHTTPHeaderField:@"Authorization"];
+    
         NSError *error = [[NSError alloc] init];
         NSHTTPURLResponse *responseCode = nil;
         
-        NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+        NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
         
         if([responseCode statusCode] != 200){
-            NSLog(@"Error getting %@, HTTP status code %li", @"http://54.172.3.196:8000/noticias/", (long)[responseCode statusCode]);
+            NSLog(@"HTTP status code %li", (long)[responseCode statusCode]);
             NSLog(@"nil");
         }
+        else {
+            AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+            AlertasViewController *alertas = [[AlertasViewController alloc]init];
+
+            delegate.incidents = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
+            NSLog(@"alerta inc%@", alertas.incidents);
+            
+            ViewController *views = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
+            
+            NSLog(@"del inc: %@", [[delegate.incidents valueForKey:@"results"]valueForKey:@"title"]);
+            delegate.window.rootViewController = views;
+        }
         
-        NSLog(@"%@",[[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding]);
+        NSLog(@"%@",[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
 }
 
 @end

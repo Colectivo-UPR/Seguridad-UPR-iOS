@@ -28,6 +28,11 @@
     [self setWindow:window];
 
     LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
+    HTTPRequestsViewController *requests = [[HTTPRequestsViewController alloc]init];
+    
+    [requests getNews];
+    
+    self.incidents = [[NSDictionary alloc]init]; 
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:login];

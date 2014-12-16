@@ -32,16 +32,28 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.email = [[UITextField alloc]initWithFrame:CGRectMake(80, 160, self.view.bounds.size.width, 40)];
-    self.passw = [[UITextField alloc]initWithFrame:CGRectMake(100, 215, self.view.bounds.size.width, 40)];
+    UILabel *elabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 180, self.view.bounds.size.width, 40)];
+    UILabel *plabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 210, self.view.bounds.size.width, 40)];
+    
+    elabel.text = @"Email: ";
+    elabel.font = [UIFont systemFontOfSize:12.0];
+    
+    plabel.text = @"Contraseña: ";
+    plabel.font = [UIFont systemFontOfSize:12.0];
+    
+    self.email = [[UITextField alloc]initWithFrame:CGRectMake(120, 180, self.view.bounds.size.width, 40)];
+    self.passw = [[UITextField alloc]initWithFrame:CGRectMake(120, 210, self.view.bounds.size.width, 40)];
     
     self.email.backgroundColor = [UIColor whiteColor];
     self.email.keyboardType = UIKeyboardTypeEmailAddress;
-    self.email.placeholder = @"Correo Electrónico";
+    self.email.font = [UIFont systemFontOfSize:12.0];
+    self.email.placeholder = @"estudante@upr.edu";
+    
     
     self.passw.backgroundColor = [UIColor whiteColor];
     self.passw.secureTextEntry = true;
-    self.passw.placeholder = @"Contraseña";
+    self.passw.font = [UIFont systemFontOfSize:12.0];
+    self.passw.placeholder = @"ex. 1234567890";
     
     UIButton *login = [[UIButton alloc]initWithFrame:CGRectMake(20, 400, self.view.bounds.size.width - 40, 40)];
     [login setTitle:@"Entrar" forState:UIControlStateNormal];
@@ -49,20 +61,17 @@
     login.tintColor = [UIColor redColor];
     [login addTarget:self action:@selector(didTapLogin:) forControlEvents:UIControlEventAllTouchEvents];
     
-    
-//    [self.view setBackgroundColor:[self getUIColorObjectFromHexString:@"fdfcfa" alpha:01]];
+    [self.view addSubview:elabel];
+    [self.view addSubview:plabel];
     
     [self.view addSubview:self.email];
     [self.view addSubview:self.passw];
     [self.view addSubview:login]; 
     
+    
 }
 
 -(void)didTapLogin:(id)sender {
-//    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
-//    
-//    ViewController *loginView = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
-//    delegate.window.rootViewController = loginView;
     
     HTTPRequestsViewController *requests = [[HTTPRequestsViewController alloc]init];
     [requests auth:self.passw.text user:self.email.text]; 
