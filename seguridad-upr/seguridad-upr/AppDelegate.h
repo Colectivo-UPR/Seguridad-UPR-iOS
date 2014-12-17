@@ -20,7 +20,9 @@
 @property (strong, nonatomic) UINavigationController *navigationController4;
 @property (strong, nonatomic) UINavigationController *navigationController5;
 
-@property NSDictionary *incidents; 
+@property NSDictionary *incidents;
+@property NSDictionary *phones;
+@property NSDictionary *reports;
 
 @end
 

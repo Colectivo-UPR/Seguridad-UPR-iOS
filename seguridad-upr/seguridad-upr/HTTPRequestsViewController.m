@@ -112,12 +112,19 @@
         [[NSUserDefaults standardUserDefaults] setValue:[dict valueForKey:@"token"] forKey:@"token"];
         
         [self getNews];
+        [self getReports];
+        [self getPhones];
         
         AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
         ViewController *views = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
         
         delegate.window.rootViewController = views;
         //here you get the response
+    }
+    else{
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"INVALID LOGIN" message:@"TRY AGAIN" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show]; 
+        
     }
     
     [task resume];
@@ -138,25 +145,82 @@
         NSHTTPURLResponse *responseCode = nil;
         
         NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-        
+    
         if([responseCode statusCode] != 200){
             NSLog(@"HTTP status code %li", (long)[responseCode statusCode]);
             NSLog(@"nil");
         }
         else {
             AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
-            AlertasViewController *alertas = [[AlertasViewController alloc]init];
 
             delegate.incidents = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
-            NSLog(@"alerta inc%@", alertas.incidents);
+            delegate.incidents = [delegate.incidents valueForKey:@"results"]; 
+            
             
             ViewController *views = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
-            
-            NSLog(@"del inc: %@", [[delegate.incidents valueForKey:@"results"]valueForKey:@"title"]);
             delegate.window.rootViewController = views;
         }
         
-        NSLog(@"%@",[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+    
+}
+
+
+-(void)getReports {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"GET"];
+    [request setURL:[NSURL URLWithString:@"http://54.172.3.196:8000/reports/"]];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSString *token = [[NSString alloc]initWithString:[[NSUserDefaults standardUserDefaults]stringForKey:@"token"]];
+    
+    [request addValue:[NSString stringWithFormat:@"Token %@",token] forHTTPHeaderField:@"Authorization"];
+    
+    NSError *error = [[NSError alloc] init];
+    NSHTTPURLResponse *responseCode = nil;
+    
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+    
+    if([responseCode statusCode] != 200){
+        NSLog(@"HTTP status code %li", (long)[responseCode statusCode]);
+        NSLog(@"nil");
+    }
+    else {
+        AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+        delegate.reports = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
+        
+        delegate.reports = [delegate.reports valueForKey:@"results"]; 
+        NSLog(@"%@", delegate.reports);
+
+    }
+}
+
+-(void)getPhones {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"GET"];
+    [request setURL:[NSURL URLWithString:@"http://54.172.3.196:8000/phones/"]];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSString *token = [[NSString alloc]initWithString:[[NSUserDefaults standardUserDefaults]stringForKey:@"token"]];
+    
+    [request addValue:[NSString stringWithFormat:@"Token %@",token] forHTTPHeaderField:@"Authorization"];
+    
+    NSError *error = [[NSError alloc] init];
+    NSHTTPURLResponse *responseCode = nil;
+    
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+    
+    if([responseCode statusCode] != 200){
+        NSLog(@"HTTP status code %li", (long)[responseCode statusCode]);
+        NSLog(@"nil");
+    }
+    else {
+        AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+        delegate.phones = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
+        delegate.phones = [delegate.phones valueForKey:@"results"];
+        
+        NSLog(@"%@", delegate.phones);
+        
+    }
 }
 
 @end

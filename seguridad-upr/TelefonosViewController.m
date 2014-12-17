@@ -54,6 +54,8 @@
     
     self.navigationItem.rightBarButtonItem = self.alertButton;
     
+    self.delegate = [[UIApplication sharedApplication]delegate];
+    
     [self.view addSubview:tableView];
     [self.view addSubview:mapView];
     
@@ -83,9 +85,9 @@
         cell = [[CustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
-    cell.nameLabel.text = @"Oficina de Seguridad";
-    cell.prepTimeLabel.text = @"A 500 pies de distancia";
-    cell.infoLabel.text = @"Lorem lorem..... bla bla bla... Loremmmm";
+    cell.nameLabel.text = [self.delegate.phones valueForKey:@"description"][indexPath.row];
+    cell.prepTimeLabel.text = [self.delegate.phones valueForKey:@"place"][indexPath.row];
+//    cell.infoLabel.text = @"Lorem lorem..... bla bla bla... Loremmmm";
     cell.thumbnailImageView.image = [UIImage imageNamed:@"map.png"];
     cell.icon.image = [UIImage imageNamed:@"ping"]; 
     

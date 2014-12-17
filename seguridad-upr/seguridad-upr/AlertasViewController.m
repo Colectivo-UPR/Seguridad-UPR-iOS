@@ -51,8 +51,9 @@
     self.navigationItem.rightBarButtonItem = self.alertButton;
     [self.view addSubview:tableView];
     
-    self.incidents = [[NSDictionary alloc]init];
+    NSLog(@"temp1 %@", self.delegate.incidents);
     self.delegate = [[UIApplication sharedApplication]delegate];
+    NSLog(@"temp2 %@", self.delegate.incidents);
     
 }
 
@@ -74,7 +75,7 @@
 
 -(NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section {
 
-    return self.incidents.count;
+    return self.delegate.incidents.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -82,12 +83,11 @@
     if (cell == nil) {
         cell = [[CustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
-    NSLog(@"temp %@", self.delegate.incidents);
-    if (self.incidents.count > 0) {
+    if (self.delegate.incidents.count > 0) {
         
-//        cell.nameLabel.text = [[temp objectAtIndex:indexPath.row]valueForKey:@"title"];
-//        cell.prepTimeLabel.text = [temp valueForKey:@"incident_date"];
-//        cell.infoLabel.text = [temp valueForKey:@"message"];
+        cell.nameLabel.text = [self.delegate.incidents valueForKey:@"title"][indexPath.row];
+        cell.prepTimeLabel.text = [self.delegate.incidents valueForKey:@"incident_date"][indexPath.row];
+        cell.infoLabel.text = [self.delegate.incidents valueForKey:@"message"][indexPath.row];
         cell.thumbnailImageView.image = [UIImage imageNamed:@"map.png"];
 
     }
