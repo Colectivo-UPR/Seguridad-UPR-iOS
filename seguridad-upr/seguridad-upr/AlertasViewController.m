@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 60, 330, 500) style:UITableViewStylePlain];
+    tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 100, 330, 500) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     
@@ -49,11 +49,31 @@
     self.alertButton.tintColor = [UIColor whiteColor];
 
     self.navigationItem.rightBarButtonItem = self.alertButton;
-    [self.view addSubview:tableView];
     
-    NSLog(@"temp1 %@", self.delegate.incidents);
     self.delegate = [[UIApplication sharedApplication]delegate];
-    NSLog(@"temp2 %@", self.delegate.incidents);
+    
+    self.incidentsButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 60, self.view.bounds.size.width / 2, 40)];
+    [self.incidentsButton setTitle:@"Incidentes" forState:UIControlStateNormal];
+    [self.incidentsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.incidentsButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    self.incidentsButton.backgroundColor = [UIColor whiteColor];
+    self.incidentsButton.tintColor = [UIColor redColor];
+    self.incidentsButton.font = [UIFont systemFontOfSize:14.0];
+    [self.incidentsButton addTarget:self action:@selector(presentIncidents:) forControlEvents:UIControlEventAllTouchEvents]; 
+    
+    self.reportsButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.bounds.size.width / 2, 60, self.view.bounds.size.width / 2, 40)];
+    [self.reportsButton setTitle:@"Reportes" forState:UIControlStateNormal];
+    self.reportsButton.backgroundColor = [UIColor whiteColor];
+    self.reportsButton.tintColor = [UIColor redColor];
+    [self.reportsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.reportsButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    self.reportsButton.font = [UIFont systemFontOfSize:14.0];
+    [self.reportsButton addTarget:self action:@selector(presentReports:) forControlEvents:UIControlEventAllTouchEvents];
+    
+    [self.view addSubview:tableView];
+    [self.view addSubview:self.incidentsButton];
+    [self.view addSubview:self.reportsButton];
+    
     
 }
 
@@ -70,6 +90,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)presentIncidents:(id)sender {
+    NSLog(@"Incidentes");
+}
+
+-(void)presentReports:(id)sender {
+    NSLog(@"Reportes");
 }
 
 

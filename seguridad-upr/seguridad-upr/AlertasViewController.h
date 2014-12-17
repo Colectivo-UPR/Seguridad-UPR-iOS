@@ -17,5 +17,7 @@
 @property AppDelegate *delegate; 
 @property NSDictionary *incidents; 
 
+@property UIButton *incidentsButton;
+@property UIButton *reportsButton; 
 
 @end
