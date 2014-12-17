@@ -20,4 +20,8 @@
 @property UIButton *incidentsButton;
 @property UIButton *reportsButton; 
 
+@property (strong, nonatomic) NSString *status; 
+
+@property UILabel *UILine;
+
 @end

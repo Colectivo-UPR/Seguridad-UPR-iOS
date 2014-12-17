@@ -27,6 +27,7 @@
         self.title = @"Teléfonos";
         
         self.view.tintColor = [UIColor whiteColor];
+        [self.view setTintColor:[UIColor whiteColor]];
     }
     return self;
 }
@@ -37,12 +38,9 @@
     tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 220, 330, 500) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
-    
     tableView.backgroundColor = [UIColor whiteColor];
     
     mapView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 60, 320, 160)];
-    
-
     NSString *fullURL = @"http://iupi-map.herokuapp.com/";
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
@@ -51,11 +49,9 @@
     UIImage *img = [UIImage imageNamed:@"post.png"];
     self.alertButton = [[UIBarButtonItem alloc]initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
     self.alertButton.tintColor = [UIColor whiteColor];
-    
     self.navigationItem.rightBarButtonItem = self.alertButton;
-    
+
     self.delegate = [[UIApplication sharedApplication]delegate];
-    
     [self.view addSubview:tableView];
     [self.view addSubview:mapView];
     
@@ -87,7 +83,6 @@
     
     cell.nameLabel.text = [self.delegate.phones valueForKey:@"description"][indexPath.row];
     cell.prepTimeLabel.text = [self.delegate.phones valueForKey:@"place"][indexPath.row];
-//    cell.infoLabel.text = @"Lorem lorem..... bla bla bla... Loremmmm";
     cell.thumbnailImageView.image = [UIImage imageNamed:@"map.png"];
     cell.icon.image = [UIImage imageNamed:@"ping"]; 
     

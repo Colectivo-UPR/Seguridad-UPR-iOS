@@ -19,18 +19,7 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
         
-        UINavigationController *navigation = [[UINavigationController alloc]init];
         self.title = @"Someter Alerta";
-        
-        self.cancel = [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
-
-        self.cancel.tintColor = [UIColor whiteColor];
-        navigation.navigationItem.leftBarButtonItem = self.cancel;
-        
-        UIImage *img = [UIImage imageNamed:@"BG.png"];
-        [navigation.navigationBar setBackgroundImage:img forBarMetrics:UIBarMetricsDefault];
-        
-        [self.view addSubview:navigation.view];
     }
     return self;
 }
@@ -67,6 +56,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
+    
+    self.cancel = [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
+    self.cancel.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationItem.rightBarButtonItem = self.cancel;
+    
 
     UITextField *title = [[UITextField alloc]initWithFrame:CGRectMake(40, 100, 250, 30)];
     title.placeholder = @"Título";

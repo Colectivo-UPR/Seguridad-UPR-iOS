@@ -47,7 +47,7 @@
     self.email.backgroundColor = [UIColor whiteColor];
     self.email.keyboardType = UIKeyboardTypeEmailAddress;
     self.email.font = [UIFont systemFontOfSize:12.0];
-    self.email.placeholder = @"estudante@upr.edu";
+    self.email.placeholder = @"estudiante@upr.edu";
     
     
     self.passw.backgroundColor = [UIColor whiteColor];
