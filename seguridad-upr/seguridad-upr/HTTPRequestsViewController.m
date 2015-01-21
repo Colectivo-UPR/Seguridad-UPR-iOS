@@ -10,10 +10,12 @@
 #import "ViewController.h"
 #import "AlertasViewController.h"
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @interface HTTPRequestsViewController ()
 
 @property NSString *token;
+@property NSString *baseURL;
 
 @end
 
@@ -21,27 +23,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.baseURL = @"http://54.165.138.75:8000";
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
 -(void)postNews:(NSString *)msg title:(NSString *)title date:(NSString *)date building:(NSString *)building {
-    NSURL *URL = [NSURL URLWithString:@"http://54.172.3.196:8000/create-incident/"];
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/create-incident/",self.baseURL]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-    // Set request type
-    request.HTTPMethod = @"POST";
-    
+
     NSDictionary *params = @{@"title":title, @"message":msg, @"message": msg, @"faculty":building, @"lat":@"0.0", @"lon":@"0.0"};
     NSData *data = [NSJSONSerialization dataWithJSONObject:params options:0 error:nil];
     
+    request.HTTPMethod = @"POST";
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:[NSString stringWithFormat:@"%lu", (unsigned long)[data length]] forHTTPHeaderField:@"Content-Length"];
-    
     [request addValue:[NSString stringWithFormat:@"Token %@", [[NSUserDefaults standardUserDefaults]valueForKey:@"token"]] forHTTPHeaderField:@"Authorization"];
     [request setHTTPBody:data];
     
@@ -62,16 +61,15 @@
 }
 
 -(void)registration:(NSString *)name lastname:(NSString *)lstname password:(NSString *)passwd email:(NSString *)email user:(NSString *)user phone:(NSString *)phone {
-    NSURL *URL = [NSURL URLWithString:@"http://54.172.3.196:8000/register/"];
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/register/",self.baseURL]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-    // Set request type
-    request.HTTPMethod = @"POST";
-    
+
     // Set params to be sent to the server
     NSDictionary *params = @{@"username": user, @"first_name":name, @"last_name":lstname, @"password":passwd, @"email":email, @"telephone": phone};
-    // Encoding type
     NSData *data = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
-    // Add values and contenttype to the http header
+    
+    // Set request type
+    request.HTTPMethod = @"POST";
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:[NSString stringWithFormat:@"%lu", (unsigned long)[data length]] forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:data];
@@ -81,15 +79,16 @@
 }
 
 -(void)auth:(NSString *)passwd user:(NSString *)user {
-    NSString *urlString = [NSString stringWithFormat:@"http://54.172.3.196:8000/api-token-auth/"];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:urlString]];
-    [request setHTTPMethod:@"POST"];
+
+    NSString *urlString = [NSString stringWithFormat:@"%@/api-token-auth/",self.baseURL];
     
     // Set params to be sent to the server
     NSDictionary *params = @{@"username":user, @"password":passwd};
     NSData *data = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
     
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSURLSession *session = [NSURLSession sharedSession];
@@ -132,13 +131,13 @@
 
 -(void)getNews {
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setHTTPMethod:@"GET"];
-        [request setURL:[NSURL URLWithString:@"http://54.172.3.196:8000/incidents/"]];
-        [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
+
         NSString *token = [[NSString alloc]initWithString:[[NSUserDefaults standardUserDefaults]stringForKey:@"token"]];
-    
         NSLog(@"token: %@", token);
+    
+        [request setHTTPMethod:@"GET"];
+        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/incidents/",self.baseURL]]];
+        [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [request addValue:[NSString stringWithFormat:@"Token %@",token] forHTTPHeaderField:@"Authorization"];
     
         NSError *error = [[NSError alloc] init];
@@ -160,19 +159,17 @@
             ViewController *views = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
             delegate.window.rootViewController = views;
         }
-        
-    
 }
 
 
 -(void)getReports {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:@"http://54.172.3.196:8000/reports/"]];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     NSString *token = [[NSString alloc]initWithString:[[NSUserDefaults standardUserDefaults]stringForKey:@"token"]];
-    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+
+    [request setHTTPMethod:@"GET"];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/reports/",self.baseURL]]];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:[NSString stringWithFormat:@"Token %@",token] forHTTPHeaderField:@"Authorization"];
     
     NSError *error = [[NSError alloc] init];
@@ -195,13 +192,12 @@
 }
 
 -(void)getPhones {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:@"http://54.172.3.196:8000/phones/"]];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
     NSString *token = [[NSString alloc]initWithString:[[NSUserDefaults standardUserDefaults]stringForKey:@"token"]];
     
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"GET"];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/phones/",self.baseURL]]];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:[NSString stringWithFormat:@"Token %@",token] forHTTPHeaderField:@"Authorization"];
     
     NSError *error = [[NSError alloc] init];

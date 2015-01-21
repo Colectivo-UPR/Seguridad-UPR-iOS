@@ -28,9 +28,10 @@
     [self setWindow:window];
 
     LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];    
+    ViewController *views = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.window setRootViewController:login];
+    [self.window setRootViewController:views];
     [self.window makeKeyAndVisible];
     
     return YES;

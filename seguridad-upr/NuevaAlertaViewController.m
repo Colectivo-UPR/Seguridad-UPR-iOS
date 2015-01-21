@@ -93,7 +93,7 @@
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.view endEditing:true];
+    [self.view endEditing:YES];
 
 }
 

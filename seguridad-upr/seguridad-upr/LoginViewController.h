@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 @interface LoginViewController : UIViewController
 
 @property UITextField *email;
 @property UITextField *passw;
 @property UIButton *login;
+@property UIActivityIndicatorView *indicator;
 
+
+-(void)loginRequest; 
 
 @end

@@ -35,7 +35,6 @@
     tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     tableView.delegate = self;
     tableView.dataSource = self;
-    
     tableView.backgroundColor = [UIColor whiteColor];
     
     UIImage *img = [UIImage imageNamed:@"post.png"];
@@ -51,7 +50,6 @@
 
 - (void)didTapConnect:(id)sender {
 //    UIViewController *newAlert = [[UITableViewController alloc]init];
-//    
 //    [self presentViewController:newAlert animated:YES completion:nil];
 }
 

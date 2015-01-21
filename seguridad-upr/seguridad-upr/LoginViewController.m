@@ -55,6 +55,10 @@
     self.passw.font = [UIFont systemFontOfSize:12.0];
     self.passw.placeholder = @"ex. 1234567890";
     
+    self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.indicator setCenter:self.view.center];
+    [self.view addSubview:self.indicator];
+    
     UIButton *login = [[UIButton alloc]initWithFrame:CGRectMake(20, 400, self.view.bounds.size.width - 40, 40)];
     [login setTitle:@"Entrar" forState:UIControlStateNormal];
     login.backgroundColor = [UIColor redColor];
@@ -66,19 +70,20 @@
     
     [self.view addSubview:self.email];
     [self.view addSubview:self.passw];
-    [self.view addSubview:login]; 
-    
+    [self.view addSubview:login];
+
     
 }
 
 -(void)didTapLogin:(id)sender {
     
-    HTTPRequestsViewController *requests = [[HTTPRequestsViewController alloc]init];
-    [requests auth:self.passw.text user:self.email.text]; 
-    
+    [self.indicator startAnimating];
     
     NSLog(@"email %@", self.email.text);
     NSLog(@"passw %@", self.passw.text);
+    
+    HTTPRequestsViewController *requests = [[HTTPRequestsViewController alloc]init];
+    [requests auth:self.email.text user:self.passw.text];
     
 }
 
@@ -94,6 +99,10 @@
                     alpha:alpha]; //f6f0e9
     
     return color;
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
 
 - (unsigned int)intFromHexString:(NSString *)hexStr {

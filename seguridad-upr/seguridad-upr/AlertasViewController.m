@@ -111,7 +111,7 @@
         return self.delegate.incidents.count;
     }
     else {
-        return self.delegate.reports.count; 
+        return self.delegate.reports.count;
     }
 }
 
@@ -123,8 +123,27 @@
     if ([self.status isEqualToString:@"Incidentes"]) {
         if (self.delegate.incidents.count > 0) {
         
+            NSString *dateStr = [self.delegate.incidents valueForKey:@"incident_date"][indexPath.row];
+            
+            // Convert string to date object
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"yyyyMMdd"];
+            NSDate *date = [dateFormat dateFromString:dateStr];
+            
+            // Convert date object to desired output format
+            [dateFormat setDateFormat:@"EEEE MMMM d, YYYY"];
+            dateStr = [dateFormat stringFromDate:date];
+            
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateStyle:NSDateFormatterFullStyle];
+//            NSDate *date  = [dateFormatter dateFromString:[self.delegate.incidents valueForKey:@"incident_date"][indexPath.row]];
+            
+            // Convert to new Date Format
+//            NSString *newDate = [dateFormatter stringFromDate:date];
+            
             cell.nameLabel.text = [self.delegate.incidents valueForKey:@"title"][indexPath.row];
-            cell.prepTimeLabel.text = [self.delegate.incidents valueForKey:@"incident_date"][indexPath.row];
+            cell.prepTimeLabel.text = dateStr;
             cell.infoLabel.text = [self.delegate.incidents valueForKey:@"message"][indexPath.row];
             cell.thumbnailImageView.image = [UIImage imageNamed:@"map.png"];
         }
