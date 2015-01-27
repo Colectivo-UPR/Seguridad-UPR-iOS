@@ -14,6 +14,7 @@
 @property UITextField *email;
 @property UITextField *passw;
 @property UIButton *login;
+@property UIImageView *logo;
 @property UIActivityIndicatorView *indicator;
 
 

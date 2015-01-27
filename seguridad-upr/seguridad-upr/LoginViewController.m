@@ -31,45 +31,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.jpg"]];
     
-    UILabel *elabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 180, self.view.bounds.size.width, 40)];
-    UILabel *plabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 210, self.view.bounds.size.width, 40)];
+    self.logo  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"miupi-login.png"]];
     
-    elabel.text = @"Email: ";
-    elabel.font = [UIFont systemFontOfSize:12.0];
-    
-    plabel.text = @"Contraseña: ";
-    plabel.font = [UIFont systemFontOfSize:12.0];
-    
-    self.email = [[UITextField alloc]initWithFrame:CGRectMake(120, 180, self.view.bounds.size.width, 40)];
-    self.passw = [[UITextField alloc]initWithFrame:CGRectMake(120, 210, self.view.bounds.size.width, 40)];
+    self.logo.frame = CGRectMake(50, 100, self.view.bounds.size.width - 100, 60);
+    self.email = [[UITextField alloc]initWithFrame:CGRectMake(20, 200, self.view.bounds.size.width - 40, 40)];
+    self.passw = [[UITextField alloc]initWithFrame:CGRectMake(20, 260, self.view.bounds.size.width - 40, 40)];
     
     self.email.backgroundColor = [UIColor whiteColor];
     self.email.keyboardType = UIKeyboardTypeEmailAddress;
-    self.email.font = [UIFont systemFontOfSize:12.0];
-    self.email.placeholder = @"estudiante@upr.edu";
+    self.email.font = [UIFont systemFontOfSize:14.0];
+    self.email.textAlignment = NSTextAlignmentCenter;
+    self.email.placeholder = @"Email";
     
     
     self.passw.backgroundColor = [UIColor whiteColor];
     self.passw.secureTextEntry = true;
-    self.passw.font = [UIFont systemFontOfSize:12.0];
-    self.passw.placeholder = @"ex. 1234567890";
+    self.passw.font = [UIFont systemFontOfSize:14.0];
+    self.passw.textAlignment = NSTextAlignmentCenter;
+    self.passw.placeholder = @"Contraseña";
+
     
     self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.indicator setCenter:self.view.center];
     [self.view addSubview:self.indicator];
     
-    UIButton *login = [[UIButton alloc]initWithFrame:CGRectMake(20, 400, self.view.bounds.size.width - 40, 40)];
-    [login setTitle:@"Entrar" forState:UIControlStateNormal];
+    UIButton *login = [[UIButton alloc]initWithFrame:CGRectMake(20, 320, self.view.bounds.size.width - 40, 40)];
+    [login setTitle:@"Ingreso" forState:UIControlStateNormal];
     login.backgroundColor = [UIColor redColor];
     login.tintColor = [UIColor redColor];
     [login addTarget:self action:@selector(didTapLogin:) forControlEvents:UIControlEventAllTouchEvents];
     
-    [self.view addSubview:elabel];
-    [self.view addSubview:plabel];
-    
     [self.view addSubview:self.email];
     [self.view addSubview:self.passw];
+    [self.view addSubview:self.logo] ;
     [self.view addSubview:login];
 
     

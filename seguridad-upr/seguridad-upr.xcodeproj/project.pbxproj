@@ -23,6 +23,8 @@
 		0A1DDBAC1A407FCA00422671 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1DDBAA1A407FCA00422671 /* LoginViewController.m */; };
 		0A1DDBAD1A407FCA00422671 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1DDBAB1A407FCA00422671 /* LoginViewController.xib */; };
 		0A1DDBB01A40884300422671 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1DDBAF1A40884300422671 /* ViewController.xib */; };
+		0A2F7DFC1A77321400A14493 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A2F7DFB1A77321400A14493 /* bg.jpg */; };
+		0A2F7DFE1A77385100A14493 /* miupi-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A2F7DFD1A77385100A14493 /* miupi-login.png */; };
 		0A876F7D1A3125C800A49B48 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A876F7C1A3125C800A49B48 /* RegisterViewController.m */; };
 		0A876F811A312D5400A49B48 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A876F801A312D5400A49B48 /* RegisterViewController.xib */; };
 		0AC5A01F1A3943FA00727BD5 /* BG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC5A01E1A3943FA00727BD5 /* BG.png */; };
@@ -36,7 +38,6 @@
 		CC2766CA19F492700061AC9A /* seguridad_uprTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2766C919F492700061AC9A /* seguridad_uprTests.m */; };
 		CC2DC9DD19FED94A00DB17F7 /* RecursosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2DC9DB19FED94A00DB17F7 /* RecursosViewController.m */; };
 		CC2DC9DE19FED94A00DB17F7 /* RecursosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC2DC9DC19FED94A00DB17F7 /* RecursosViewController.xib */; };
-		CCE239961A00385C00B92E03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CCE239951A00385C00B92E03 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		0A1DDBAA1A407FCA00422671 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		0A1DDBAB1A407FCA00422671 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = "seguridad-upr/LoginViewController.xib"; sourceTree = "<group>"; };
 		0A1DDBAF1A40884300422671 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController.xib; path = "seguridad-upr/ViewController.xib"; sourceTree = "<group>"; };
+		0A2F7DFB1A77321400A14493 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
+		0A2F7DFD1A77385100A14493 /* miupi-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "miupi-login.png"; sourceTree = "<group>"; };
 		0A876F7B1A3125C800A49B48 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		0A876F7C1A3125C800A49B48 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		0A876F801A312D5400A49B48 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
@@ -101,7 +104,6 @@
 		CC2DC9DA19FED94A00DB17F7 /* RecursosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecursosViewController.h; sourceTree = "<group>"; };
 		CC2DC9DB19FED94A00DB17F7 /* RecursosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecursosViewController.m; sourceTree = "<group>"; };
 		CC2DC9DC19FED94A00DB17F7 /* RecursosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RecursosViewController.xib; path = "seguridad-upr/RecursosViewController.xib"; sourceTree = "<group>"; };
-		CCE239951A00385C00B92E03 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,16 +152,25 @@
 				0A01077719FA0CF7004C2056 /* TelefonosViewController.xib */,
 				0A1DDBAB1A407FCA00422671 /* LoginViewController.xib */,
 				0A01076D19F9F35E004C2056 /* CustomCell.xib */,
-				0AC5A01E1A3943FA00727BD5 /* BG.png */,
 				0A1DDBAF1A40884300422671 /* ViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
 		};
+		0A2F7DFA1A7731ED00A14493 /* Imgs */ = {
+			isa = PBXGroup;
+			children = (
+				0AC5A01E1A3943FA00727BD5 /* BG.png */,
+				0A2F7DFD1A77385100A14493 /* miupi-login.png */,
+				0A2F7DFB1A77321400A14493 /* bg.jpg */,
+			);
+			name = Imgs;
+			sourceTree = "<group>";
+		};
 		CC2766A119F492700061AC9A = {
 			isa = PBXGroup;
 			children = (
-				CCE239951A00385C00B92E03 /* Default-568h@2x.png */,
+				0A2F7DFA1A7731ED00A14493 /* Imgs */,
 				0A01077419FA0C84004C2056 /* Views */,
 				CC2766AC19F492700061AC9A /* seguridad-upr */,
 				CC2766C619F492700061AC9A /* seguridad-uprTests */,
@@ -351,15 +362,16 @@
 			files = (
 				0A01076E19F9F35E004C2056 /* CustomCell.xib in Resources */,
 				0A876F811A312D5400A49B48 /* RegisterViewController.xib in Resources */,
+				0A2F7DFE1A77385100A14493 /* miupi-login.png in Resources */,
 				CC2766BB19F492700061AC9A /* Images.xcassets in Resources */,
 				0A01077919FA0CF7004C2056 /* TelefonosViewController.xib in Resources */,
+				0A2F7DFC1A77321400A14493 /* bg.jpg in Resources */,
 				0AFEC60B1A00897100B1B823 /* NuevaAlertaViewController.xib in Resources */,
 				0A1DDBB01A40884300422671 /* ViewController.xib in Resources */,
 				0AC5A01F1A3943FA00727BD5 /* BG.png in Resources */,
 				0A01077319FA0C71004C2056 /* AlertasViewController.xib in Resources */,
 				0A01078319FA0D3C004C2056 /* TrolleysViewController.xib in Resources */,
 				0A1DDBAD1A407FCA00422671 /* LoginViewController.xib in Resources */,
-				CCE239961A00385C00B92E03 /* Default-568h@2x.png in Resources */,
 				CC2DC9DE19FED94A00DB17F7 /* RecursosViewController.xib in Resources */,
 				0A01077E19FA0D0D004C2056 /* DesalojoViewController.xib in Resources */,
 			);

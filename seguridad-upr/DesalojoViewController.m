@@ -37,7 +37,7 @@
     
     tableView.backgroundColor = [UIColor whiteColor];
     
-    mapView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 60, 320, 160)];
+    mapView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 60, 320, 400)];
     NSString *fullURL = @"http://iupi-map.herokuapp.com/";
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
