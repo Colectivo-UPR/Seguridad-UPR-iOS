@@ -67,8 +67,6 @@
     [self.view addSubview:self.passw];
     [self.view addSubview:self.logo] ;
     [self.view addSubview:login];
-
-    
 }
 
 -(void)didTapLogin:(id)sender {
@@ -80,6 +78,11 @@
     
     HTTPRequestsViewController *requests = [[HTTPRequestsViewController alloc]init];
     [requests auth:self.email.text user:self.passw.text];
+    
+//    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+//    ViewController *views = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
+//    delegate.window.rootViewController = views; 
+    
     
 }
 

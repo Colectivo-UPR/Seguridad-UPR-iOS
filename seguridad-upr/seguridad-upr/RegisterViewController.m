@@ -28,61 +28,60 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.jpg"]];
+    self.logo  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"miupi-login.png"]];
     
-    self.name   = [[UITextField alloc]initWithFrame:CGRectMake(0,  40, 100, 20)];
-    self.lstn   = [[UITextField alloc]initWithFrame:CGRectMake(0,  80, 100, 20)];
-    self.email  = [[UITextField alloc]initWithFrame:CGRectMake(0, 120, 100, 20)];
-    self.passwd = [[UITextField alloc]initWithFrame:CGRectMake(0, 160, 100, 20)];
-
-    self.registration = [[UIButton alloc]initWithFrame:CGRectMake(0, 210, 100, 30)];
-    [self.registration setTitle:@"Registrame" forState:UIControlStateNormal];
-    [self.registration addTarget:self action:@selector(registrationTapped:) forControlEvents:UIControlEventTouchUpOutside];
-    self.registration.backgroundColor = [UIColor grayColor];
-
-    self.name.placeholder = @"Name";
+    self.logo.frame = CGRectMake(50, 100, self.view.bounds.size.width - 100, 70);
+    self.email = [[UITextField alloc]initWithFrame:CGRectMake(20, 300, self.view.bounds.size.width - 40, 40)];
+    self.passw = [[UITextField alloc]initWithFrame:CGRectMake(20, 360, self.view.bounds.size.width - 40, 40)];
+    self.name  = [[UITextField alloc]initWithFrame:CGRectMake(20, 180, self.view.bounds.size.width - 40, 40)];
+    self.lstn  = [[UITextField alloc]initWithFrame:CGRectMake(20, 240, self.view.bounds.size.width - 40, 40)];
+    
     self.name.backgroundColor = [UIColor whiteColor];
-    
-    self.email.backgroundColor = [UIColor whiteColor];
-    self.email.placeholder = @"Email";
-    
-    self.passwd.backgroundColor = [UIColor whiteColor];
-    self.passwd.placeholder = @"Password";
+    self.name.font = [UIFont systemFontOfSize:14.0];
+    self.name.textAlignment = NSTextAlignmentCenter;
+    self.name.placeholder = @"Nombre";
     
     self.lstn.backgroundColor = [UIColor whiteColor];
-    self.lstn.placeholder = @"Last Name";
+    self.lstn.font = [UIFont systemFontOfSize:14.0];
+    self.lstn.textAlignment = NSTextAlignmentCenter;
+    self.lstn.placeholder = @"Apellidos";
     
+    self.email.backgroundColor = [UIColor whiteColor];
+    self.email.keyboardType = UIKeyboardTypeEmailAddress;
+    self.email.font = [UIFont systemFontOfSize:14.0];
+    self.email.textAlignment = NSTextAlignmentCenter;
+    self.email.placeholder = @"Email";
     
-    self.view.backgroundColor = [UIColor redColor];
+    self.passw.backgroundColor = [UIColor whiteColor];
+    self.passw.secureTextEntry = true;
+    self.passw.font = [UIFont systemFontOfSize:14.0];
+    self.passw.textAlignment = NSTextAlignmentCenter;
+    self.passw.placeholder = @"Contraseña";
+    
+    UIButton *login = [[UIButton alloc]initWithFrame:CGRectMake(20, 420, self.view.bounds.size.width - 40, 40)];
+    [login setTitle:@"Registrame" forState:UIControlStateNormal];
+    login.backgroundColor = [UIColor redColor];
+    login.tintColor = [UIColor redColor];
+    [login addTarget:self action:@selector(didTapLogin:) forControlEvents:UIControlEventAllTouchEvents];
+    
+    [self.view addSubview:self.email];
+    [self.view addSubview:self.passw];
     [self.view addSubview:self.name];
     [self.view addSubview:self.lstn];
-    [self.view addSubview:self.email];
-    [self.view addSubview:self.passwd];
-    [self.view addSubview:self.registration];
-    
-    HTTPRequestsViewController *requests = [[HTTPRequestsViewController alloc]init];
-    NSLog(@"HELLO");
-    
-//    NSString *name  = @"Alex";
-//    NSString *email = @"asantos@gmail.com";
-//    NSString *passw = @"123456";
-//    NSString *lstn  = @"Santos";
-//    
-//    [requests registration:name lastname:lstn password:passw email:email user:@"AlexXx" phone:@"7870980987"];
+    [self.view addSubview:self.logo] ;
+    [self.view addSubview:login];
 }
 
 
 -(void)registrationTapped:(id)sender {
-//    HTTPRequestsViewController *requests = [[HTTPRequestsViewController alloc]init];
-//    NSLog(@"HELLO");
-//    
-//    NSString *name  = self.name.text;
-//    NSString *email = self.email.text;
-//    NSString *passw = self.passwd.text;
-//    NSString *lstn  = self.lstn.text;
-    
-//    [requests registration:name lastname:lstn password:passw email:email];
     
 }
+
+-(void)didTapLogin:(id)sender {
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

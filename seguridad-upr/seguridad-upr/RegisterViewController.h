@@ -12,8 +12,9 @@
 
 @property UITextField *name;
 @property UITextField *email;
-@property UITextField *passwd;
+@property UITextField *passw;
 @property UITextField *lstn;
+@property UIImageView *logo;
 
 @property (retain, nonatomic) IBOutlet UIButton *registration; 
 @end

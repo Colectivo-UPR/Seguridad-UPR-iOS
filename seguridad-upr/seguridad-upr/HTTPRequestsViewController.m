@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.baseURL = @"http://54.165.138.75:8000";
+    self.baseURL = @"http://36.145.181.112:8080";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,7 +83,7 @@
     NSString *urlString = [NSString stringWithFormat:@"%@/api-token-auth/",self.baseURL];
     
     // Set params to be sent to the server
-    NSDictionary *params = @{@"username":user, @"password":passwd};
+    NSDictionary *params = @{@"email":user, @"password":passwd};
     NSData *data = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];

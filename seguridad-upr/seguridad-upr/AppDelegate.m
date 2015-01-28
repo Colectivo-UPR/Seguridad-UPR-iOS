@@ -10,7 +10,8 @@
 #import "ViewController.h"
 #import "LoginViewController.h"
 #import "HTTPRequestsViewController.h"
-
+#import "RegisterViewController.h"
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -26,12 +27,24 @@
     UIWindow *window = [[UIWindow alloc]initWithFrame:screenBounds];
     
     [self setWindow:window];
+    
+    [Parse setApplicationId:@"ey6t7sHwpuBhg3jxm4NacnT2JOrjdGEaFOuV6pvt"
+                  clientKey:@"4X7xr086XLQYXOIgrngkbwwg0RHAjjPy1XHmqxrm"];
 
-    LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];    
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                    UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
+    
+    LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
     ViewController *views = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
+    RegisterViewController *registro = [[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.window setRootViewController:login];
+    [self.window setRootViewController:registro];
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -53,9 +66,16 @@
     return hexInt;
 }
 
--(void)didTapConnect:(id)sender {
-    NSLog(@"HOLLA"); 
-    
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Store the deviceToken in the current Installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
 }
 
 - (UIColor *)getUIColorObjectFromHexString:(NSString *)hexStr alpha:(CGFloat)alpha {

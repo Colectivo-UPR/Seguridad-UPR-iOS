@@ -61,9 +61,10 @@
     self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
     
     self.cancel = [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
-    self.cancel.tintColor = [UIColor whiteColor];
+    self.cancel.tintColor = [UIColor redColor];
     self.navigationController.navigationItem.rightBarButtonItem = self.cancel;
     
+    UINavigationController *navbar = [[UINavigationController alloc]init];
 
     UITextField *title = [[UITextField alloc]initWithFrame:CGRectMake(40, 100, 250, 30)];
     title.placeholder = @"Título";
@@ -80,10 +81,13 @@
     UIButton *post = [[UIButton alloc]initWithFrame:CGRectMake(40, 230, 250, 40)];
     post.tintColor = [UIColor grayColor];
     
+    navbar.navigationItem.leftBarButtonItem = self.cancel;
+    
     [self.view addSubview:title];
     [self.view addSubview:message];
     [self.view addSubview:building];
     [self.view addSubview:post];
+    [self.view addSubview:navbar.view];
 }
 
 - (void)didTapConnect:(id)sender {
