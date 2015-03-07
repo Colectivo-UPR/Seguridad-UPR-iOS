@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "HTTPRequestsViewController.h"
+#import "RegisterViewController.h"
 
 @interface LoginViewController ()
 
@@ -62,11 +63,18 @@
     login.backgroundColor = [UIColor redColor];
     login.tintColor = [UIColor redColor];
     [login addTarget:self action:@selector(didTapLogin:) forControlEvents:UIControlEventAllTouchEvents];
+
+    UIButton *logged = [[UIButton alloc]initWithFrame:CGRectMake(20, 370, self.view.bounds.size.width - 40, 40)];
+    [logged setTitle:@"No tengo cuenta, Registame" forState:UIControlStateNormal];
+    logged.backgroundColor = [UIColor redColor];
+    logged.tintColor = [UIColor redColor];
+    [logged addTarget:self action:@selector(didTapRegister:) forControlEvents:UIControlEventAllTouchEvents];
     
     [self.view addSubview:self.email];
     [self.view addSubview:self.passw];
     [self.view addSubview:self.logo] ;
     [self.view addSubview:login];
+    [self.view addSubview:logged];
 }
 
 -(void)didTapLogin:(id)sender {
@@ -83,6 +91,12 @@
 //    ViewController *views = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
 //    delegate.window.rootViewController = views; 
     
+    
+}
+-(void)didTapRegister:(id)sender {
+    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    RegisterViewController *views = [[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
+    delegate.window.rootViewController = views;
     
 }
 

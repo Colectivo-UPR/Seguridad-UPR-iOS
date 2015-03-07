@@ -18,7 +18,6 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         
         self.title = @"Registro";
-        self.view.tintColor = [UIColor whiteColor];
         
         
     }
