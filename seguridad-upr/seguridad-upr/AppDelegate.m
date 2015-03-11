@@ -39,12 +39,12 @@
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
     
-    LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
-    ViewController *views = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
-    RegisterViewController *registro = [[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
+    LoginViewController *login = [[LoginViewController alloc] init];
+    //ViewController *views = [[ViewController alloc] init];
+    //RegisterViewController *registration = [[RegisterViewController alloc] init];
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.window setRootViewController:registro];
+    [self.window setRootViewController:login];
     [self.window makeKeyAndVisible];
     
     return YES;

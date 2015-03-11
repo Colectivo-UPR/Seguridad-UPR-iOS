@@ -18,12 +18,12 @@
     UIWebView *mapView;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
+- (instancetype)init
+{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
         self.title = @"Desalojo";
         
-        self.view.tintColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -38,7 +38,7 @@
     tableView.backgroundColor = [UIColor whiteColor];
     
     mapView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 60, 320, 400)];
-    NSString *fullURL = @"http://iupi-map.herokuapp.com/";
+    NSString *fullURL = @"http://iupi-app.herokuapp.com/";
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     

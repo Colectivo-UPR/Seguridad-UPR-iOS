@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "PureLayout.h"
-#import "PureLayout+Internal.h"
-#import "PureLayoutDefines.h"
+//#import "PureLayout.h"
+//#import "PureLayout+Internal.h"
+//#import "PureLayoutDefines.h"
 
 @interface CustomCell : UITableViewCell
 

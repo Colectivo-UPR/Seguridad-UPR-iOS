@@ -61,7 +61,7 @@
 }
 
 -(void)registration:(NSString *)name lastname:(NSString *)lstname password:(NSString *)passwd email:(NSString *)email user:(NSString *)user phone:(NSString *)phone {
-    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/register/",self.baseURL]];
+    NSURL *URL = [NSURL URLWithString:@"http://36.145.181.112:8080/register/"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
 
     // Set params to be sent to the server

@@ -18,12 +18,12 @@
     
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
+- (instancetype)init
+{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
         self.title = @"Recursos";
         
-        self.view.tintColor = [UIColor whiteColor];
     }
     return self;
 }
