@@ -1,5 +1,5 @@
 //
-//  PhonesViewController.m
+//  TelefonosViewController.m
 //  seguridad-upr
 //
 //  Created by Xiomara on 10/24/14.
@@ -8,7 +8,7 @@
 
 #import "PhonesViewController.h"
 #import "CustomCell.h"
-#import "NewAlertViewController.h"
+#import "NuevaAlertaViewController.h"
 
 
 @interface PhonesViewController ()
@@ -21,22 +21,17 @@
     
 }
 
-
--(instancetype)init
+- (instancetype)init
 {
-    self = [super initWithNibName:nil bundle: nil];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
-        self.title = @"Teléfonos";
-        self.view.tintColor = [UIColor whiteColor];
-        self.view.backgroundColor = [UIColor whiteColor];
+        self.title = @"Telefonos";
+        
     }
-    
     return self;
-    
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 450, 330, 500) style:UITableViewStylePlain];
@@ -45,7 +40,7 @@
     tableView.backgroundColor = [UIColor whiteColor];
     
     mapView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 60, 320, 400)];
-    NSString *fullURL = @"http://iupi-map.herokuapp.com/";
+    NSString *fullURL = @"http://iupi-app.herokuapp.com/";
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [mapView loadRequest:requestObj];
@@ -61,26 +56,24 @@
     
 }
 
-- (void)didTapConnect:(id)sender
-{
-    NewAlertViewController *newAlert = [[NewAlertViewController alloc]init];
+- (void)didTapConnect:(id)sender {
+    NuevaAlertaViewController *newAlert = [[NuevaAlertaViewController alloc]init];
     
     [self presentViewController:newAlert animated:YES completion:nil];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 
--(NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
-{
+-(NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section {
+    
     return 10;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CustomCell *cell = (CustomCell *)[theTableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
@@ -95,13 +88,12 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Aqui?
+- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
 }
 
-- (CGFloat)tableView:(UITableView *)theTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)theTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 105.0;
 }
 

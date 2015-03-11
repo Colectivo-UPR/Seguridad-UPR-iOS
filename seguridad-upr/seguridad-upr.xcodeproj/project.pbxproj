@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A01076919F9467F004C2056 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01076819F9467F004C2056 /* CustomCell.m */; };
-		0A01077219FA0C71004C2056 /* AlertasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01077019FA0C71004C2056 /* AlertasViewController.m */; };
-		0A01077819FA0CF7004C2056 /* TelefonosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01077619FA0CF7004C2056 /* TelefonosViewController.m */; };
+		0A01077219FA0C71004C2056 /* AlertsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01077019FA0C71004C2056 /* AlertsViewController.m */; };
+		0A01077819FA0CF7004C2056 /* PhonesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01077619FA0CF7004C2056 /* PhonesViewController.m */; };
 		0A01077D19FA0D0D004C2056 /* DesalojoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01077B19FA0D0D004C2056 /* DesalojoViewController.m */; };
 		0A01078219FA0D3C004C2056 /* TrolleysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01078019FA0D3C004C2056 /* TrolleysViewController.m */; };
 		0A1DDBAC1A407FCA00422671 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1DDBAA1A407FCA00422671 /* LoginViewController.m */; };
@@ -31,13 +31,13 @@
 		0A876F7D1A3125C800A49B48 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A876F7C1A3125C800A49B48 /* RegisterViewController.m */; };
 		0AC5A01F1A3943FA00727BD5 /* BG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC5A01E1A3943FA00727BD5 /* BG.png */; };
 		0ADEBE821A1EE0C50051FB83 /* HTTPRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADEBE811A1EE0C50051FB83 /* HTTPRequestsViewController.m */; };
-		0AFEC60A1A00897100B1B823 /* NuevaAlertaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEC6081A00897100B1B823 /* NuevaAlertaViewController.m */; };
+		0AFEC60A1A00897100B1B823 /* NewAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEC6081A00897100B1B823 /* NewAlertViewController.m */; };
 		CC2766B019F492700061AC9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2766AF19F492700061AC9A /* main.m */; };
 		CC2766B319F492700061AC9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2766B219F492700061AC9A /* AppDelegate.m */; };
 		CC2766B619F492700061AC9A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2766B519F492700061AC9A /* ViewController.m */; };
 		CC2766BB19F492700061AC9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC2766BA19F492700061AC9A /* Images.xcassets */; };
 		CC2766CA19F492700061AC9A /* seguridad_uprTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2766C919F492700061AC9A /* seguridad_uprTests.m */; };
-		CC2DC9DD19FED94A00DB17F7 /* RecursosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2DC9DB19FED94A00DB17F7 /* RecursosViewController.m */; };
+		CC2DC9DD19FED94A00DB17F7 /* ResourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2DC9DB19FED94A00DB17F7 /* ResourcesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,10 +53,10 @@
 /* Begin PBXFileReference section */
 		0A01076719F9467F004C2056 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		0A01076819F9467F004C2056 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
-		0A01076F19FA0C70004C2056 /* AlertasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertasViewController.h; sourceTree = "<group>"; };
-		0A01077019FA0C71004C2056 /* AlertasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertasViewController.m; sourceTree = "<group>"; };
-		0A01077519FA0CF7004C2056 /* TelefonosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TelefonosViewController.h; path = ../TelefonosViewController.h; sourceTree = "<group>"; };
-		0A01077619FA0CF7004C2056 /* TelefonosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TelefonosViewController.m; path = ../TelefonosViewController.m; sourceTree = "<group>"; };
+		0A01076F19FA0C70004C2056 /* AlertsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertsViewController.h; sourceTree = "<group>"; };
+		0A01077019FA0C71004C2056 /* AlertsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertsViewController.m; sourceTree = "<group>"; };
+		0A01077519FA0CF7004C2056 /* PhonesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhonesViewController.h; path = ../PhonesViewController.h; sourceTree = "<group>"; };
+		0A01077619FA0CF7004C2056 /* PhonesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhonesViewController.m; path = ../PhonesViewController.m; sourceTree = "<group>"; };
 		0A01077A19FA0D0D004C2056 /* DesalojoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DesalojoViewController.h; path = ../DesalojoViewController.h; sourceTree = "<group>"; };
 		0A01077B19FA0D0D004C2056 /* DesalojoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DesalojoViewController.m; path = ../DesalojoViewController.m; sourceTree = "<group>"; };
 		0A01077F19FA0D3C004C2056 /* TrolleysViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrolleysViewController.h; path = ../TrolleysViewController.h; sourceTree = "<group>"; };
@@ -84,8 +84,8 @@
 		0AC5A01E1A3943FA00727BD5 /* BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG.png; sourceTree = "<group>"; };
 		0ADEBE801A1EE0C50051FB83 /* HTTPRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPRequestsViewController.h; sourceTree = "<group>"; };
 		0ADEBE811A1EE0C50051FB83 /* HTTPRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRequestsViewController.m; sourceTree = "<group>"; };
-		0AFEC6071A00897100B1B823 /* NuevaAlertaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NuevaAlertaViewController.h; path = ../NuevaAlertaViewController.h; sourceTree = "<group>"; };
-		0AFEC6081A00897100B1B823 /* NuevaAlertaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NuevaAlertaViewController.m; path = ../NuevaAlertaViewController.m; sourceTree = "<group>"; };
+		0AFEC6071A00897100B1B823 /* NewAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewAlertViewController.h; path = ../NewAlertViewController.h; sourceTree = "<group>"; };
+		0AFEC6081A00897100B1B823 /* NewAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewAlertViewController.m; path = ../NewAlertViewController.m; sourceTree = "<group>"; };
 		CC2766AA19F492700061AC9A /* seguridad-upr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "seguridad-upr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC2766AE19F492700061AC9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC2766AF19F492700061AC9A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -97,8 +97,8 @@
 		CC2766C319F492700061AC9A /* seguridad-uprTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "seguridad-uprTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC2766C819F492700061AC9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC2766C919F492700061AC9A /* seguridad_uprTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = seguridad_uprTests.m; sourceTree = "<group>"; };
-		CC2DC9DA19FED94A00DB17F7 /* RecursosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecursosViewController.h; sourceTree = "<group>"; };
-		CC2DC9DB19FED94A00DB17F7 /* RecursosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecursosViewController.m; sourceTree = "<group>"; };
+		CC2DC9DA19FED94A00DB17F7 /* ResourcesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourcesViewController.h; sourceTree = "<group>"; };
+		CC2DC9DB19FED94A00DB17F7 /* ResourcesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourcesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,10 +200,10 @@
 		0AC33CF21AAFF34F0034C580 /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
-				0A01076F19FA0C70004C2056 /* AlertasViewController.h */,
-				0A01077019FA0C71004C2056 /* AlertasViewController.m */,
-				0AFEC6081A00897100B1B823 /* NuevaAlertaViewController.m */,
-				0AFEC6071A00897100B1B823 /* NuevaAlertaViewController.h */,
+				0A01076F19FA0C70004C2056 /* AlertsViewController.h */,
+				0A01077019FA0C71004C2056 /* AlertsViewController.m */,
+				0AFEC6081A00897100B1B823 /* NewAlertViewController.m */,
+				0AFEC6071A00897100B1B823 /* NewAlertViewController.h */,
 			);
 			name = Alerts;
 			sourceTree = "<group>";
@@ -295,16 +295,16 @@
 			children = (
 				0AC33CF31AAFF3770034C580 /* Auth */,
 				0AC33CF21AAFF34F0034C580 /* Alerts */,
-				CC2DC9DA19FED94A00DB17F7 /* RecursosViewController.h */,
-				CC2DC9DB19FED94A00DB17F7 /* RecursosViewController.m */,
 				CC2766B419F492700061AC9A /* ViewController.h */,
+				CC2766B519F492700061AC9A /* ViewController.m */,
+				CC2DC9DA19FED94A00DB17F7 /* ResourcesViewController.h */,
+				CC2DC9DB19FED94A00DB17F7 /* ResourcesViewController.m */,
 				0A01077A19FA0D0D004C2056 /* DesalojoViewController.h */,
 				0A01077B19FA0D0D004C2056 /* DesalojoViewController.m */,
 				0A01077F19FA0D3C004C2056 /* TrolleysViewController.h */,
 				0A01078019FA0D3C004C2056 /* TrolleysViewController.m */,
-				0A01077519FA0CF7004C2056 /* TelefonosViewController.h */,
-				0A01077619FA0CF7004C2056 /* TelefonosViewController.m */,
-				CC2766B519F492700061AC9A /* ViewController.m */,
+				0A01077519FA0CF7004C2056 /* PhonesViewController.h */,
+				0A01077619FA0CF7004C2056 /* PhonesViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -423,11 +423,11 @@
 				0A01077D19FA0D0D004C2056 /* DesalojoViewController.m in Sources */,
 				CC2766B319F492700061AC9A /* AppDelegate.m in Sources */,
 				CC2766B019F492700061AC9A /* main.m in Sources */,
-				0AFEC60A1A00897100B1B823 /* NuevaAlertaViewController.m in Sources */,
-				CC2DC9DD19FED94A00DB17F7 /* RecursosViewController.m in Sources */,
+				0AFEC60A1A00897100B1B823 /* NewAlertViewController.m in Sources */,
+				CC2DC9DD19FED94A00DB17F7 /* ResourcesViewController.m in Sources */,
 				0A1DDBAC1A407FCA00422671 /* LoginViewController.m in Sources */,
-				0A01077819FA0CF7004C2056 /* TelefonosViewController.m in Sources */,
-				0A01077219FA0C71004C2056 /* AlertasViewController.m in Sources */,
+				0A01077819FA0CF7004C2056 /* PhonesViewController.m in Sources */,
+				0A01077219FA0C71004C2056 /* AlertsViewController.m in Sources */,
 				0A876F7D1A3125C800A49B48 /* RegisterViewController.m in Sources */,
 				0ADEBE821A1EE0C50051FB83 /* HTTPRequestsViewController.m in Sources */,
 				0A01076919F9467F004C2056 /* CustomCell.m in Sources */,
@@ -533,6 +533,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -550,6 +551,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

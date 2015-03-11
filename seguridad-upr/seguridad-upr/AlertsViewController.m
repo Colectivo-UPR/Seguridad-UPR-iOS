@@ -1,5 +1,5 @@
 //
-//  AlertsViewController.m
+//  AlertasViewController.m
 //  seguridad-upr
 //
 //  Created by Xiomara on 10/24/14.
@@ -9,7 +9,7 @@
 #import "AlertsViewController.h"
 #import "NewAlertViewController.h"
 #import "CustomCell.h"
-#import "UPRHTTPRequestsViewController.h"
+#import "HTTPRequestsViewController.h"
 #import "AppDelegate.h"
 
 @interface AlertsViewController ()
@@ -21,22 +21,21 @@
 }
 
 
--(instancetype)init
-{
-    self = [super initWithNibName:nil bundle: nil];
-    if (self) {
-        self.title = @"Alertas"; 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        
+        self.title = @"Alertas";
         self.view.tintColor = [UIColor whiteColor];
-        self.view.backgroundColor = [UIColor whiteColor]; 
+
+        
     }
     return self;
-    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 80, 330, 500) style:UITableViewStylePlain];
+    tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 100, 330, 500) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.backgroundColor = [UIColor whiteColor];
@@ -48,27 +47,29 @@
     self.navigationItem.rightBarButtonItem = self.alertButton;
     self.delegate = [[UIApplication sharedApplication]delegate];
     
-    self.incidentsButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 10, self.view.bounds.size.width / 2 -10, 40)];
-    [self.incidentsButton setTitle:@"Avisos" forState:UIControlStateNormal];
+    self.incidentsButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 60, self.view.bounds.size.width / 2 -10, 40)];
+    [self.incidentsButton setTitle:@"Incidentes" forState:UIControlStateNormal];
     [self.incidentsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.incidentsButton setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
     self.incidentsButton.backgroundColor = [UIColor whiteColor];
     self.incidentsButton.tintColor = [UIColor redColor];
+    self.incidentsButton.font = [UIFont systemFontOfSize:14.0];
     [self.incidentsButton addTarget:self action:@selector(presentIncidents:) forControlEvents:UIControlEventAllTouchEvents];
     
-    self.reportsButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.bounds.size.width / 2, 10, self.view.bounds.size.width / 2 -10, 40)];
-    [self.reportsButton setTitle:@"Alertas" forState:UIControlStateNormal];
+    self.reportsButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.bounds.size.width / 2, 60, self.view.bounds.size.width / 2 -10, 40)];
+    [self.reportsButton setTitle:@"Reportes" forState:UIControlStateNormal];
     self.reportsButton.backgroundColor = [UIColor whiteColor];
     self.reportsButton.tintColor = [UIColor redColor];
     [self.reportsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.reportsButton setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+    self.reportsButton.font = [UIFont systemFontOfSize:14.0];
     [self.reportsButton addTarget:self action:@selector(presentReports:) forControlEvents:UIControlEventAllTouchEvents];
     
-    self.UILine = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width / 2, 10, 10, 40)];
+    self.UILine = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width / 2, 60, 10, 40)];
     self.UILine.text = @"|";
     self.UILine.tintColor = [UIColor grayColor];
     
-    self.status = @"Incidentes";
+    self.status = [[NSString alloc]initWithString:@"Incidentes"];
     
     [self.view addSubview:tableView];
     [self.view addSubview:self.incidentsButton];
@@ -83,7 +84,7 @@
 
 - (void)didTapConnect:(id)sender {
 
-    UIViewController *newAlert = [[NewAlertViewController alloc] init];
+    UIViewController *newAlert = [[NuevaAlertaViewController alloc]initWithNibName:@"NuevaAlertaViewController" bundle:nil];
     self.delegate.window.rootViewController = newAlert;
 }
 
@@ -136,6 +137,10 @@
             
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateStyle:NSDateFormatterFullStyle];
+//            NSDate *date  = [dateFormatter dateFromString:[self.delegate.incidents valueForKey:@"incident_date"][indexPath.row]];
+            
+            // Convert to new Date Format
+//            NSString *newDate = [dateFormatter stringFromDate:date];
             
             cell.nameLabel.text = [self.delegate.incidents valueForKey:@"title"][indexPath.row];
             cell.prepTimeLabel.text = dateStr;

@@ -1,5 +1,5 @@
 //
-//  NewAlertViewController.m
+//  NuevaAlertaViewController.m
 //  seguridad-upr
 //
 //  Created by Xiomara on 10/28/14.
@@ -7,7 +7,7 @@
 //
 
 #import "NewAlertViewController.h"
-#import "UPRHTTPRequestsViewController.h"
+#import "HTTPRequestsViewController.h"
 
 @interface NewAlertViewController ()
 
@@ -15,21 +15,16 @@
 
 @implementation NewAlertViewController
 
--(instancetype)init
-{
-    self = [super initWithNibName:nil bundle: nil];
-    if (self) {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        // Custom initialization
+        
         self.title = @"Someter Alerta";
-        self.view.tintColor = [UIColor whiteColor];
     }
     return self;
-    
 }
 
-#warning mover esto a un mejor sitio
-
-- (unsigned int)intFromHexString:(NSString *)hexStr
-{
+- (unsigned int)intFromHexString:(NSString *)hexStr {
     unsigned int hexInt = 0;
     
     // Create scanner
@@ -59,8 +54,7 @@
     return color;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];

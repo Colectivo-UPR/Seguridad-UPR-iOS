@@ -1,5 +1,5 @@
 //
-//  NewAlertViewController.h
+//  NuevaAlertaViewController.h
 //  seguridad-upr
 //
 //  Created by Xiomara on 10/28/14.

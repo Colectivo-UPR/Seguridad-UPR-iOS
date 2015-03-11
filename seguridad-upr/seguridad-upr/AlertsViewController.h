@@ -1,5 +1,5 @@
 //
-//  AlertsViewController.h
+//  AlertasViewController.h
 //  seguridad-upr
 //
 //  Created by Xiomara on 10/24/14.
