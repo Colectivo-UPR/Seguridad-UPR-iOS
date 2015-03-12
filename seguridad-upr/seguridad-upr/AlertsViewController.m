@@ -26,7 +26,7 @@
         
         self.title = @"Alertas";
         self.view.tintColor = [UIColor whiteColor];
-
+        self.view.backgroundColor = [UIColor whiteColor];
         
     }
     return self;
@@ -53,8 +53,7 @@
     [self.incidentsButton setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
     self.incidentsButton.backgroundColor = [UIColor whiteColor];
     self.incidentsButton.tintColor = [UIColor redColor];
-    self.incidentsButton.font = [UIFont systemFontOfSize:14.0];
-    [self.incidentsButton addTarget:self action:@selector(presentIncidents:) forControlEvents:UIControlEventAllTouchEvents];
+    [self.incidentsButton addTarget:self action:@selector(presentIncidents:) forControlEvents:UIControlEventTouchUpInside];
     
     self.reportsButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.bounds.size.width / 2, 60, self.view.bounds.size.width / 2 -10, 40)];
     [self.reportsButton setTitle:@"Reportes" forState:UIControlStateNormal];
@@ -62,14 +61,13 @@
     self.reportsButton.tintColor = [UIColor redColor];
     [self.reportsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.reportsButton setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
-    self.reportsButton.font = [UIFont systemFontOfSize:14.0];
-    [self.reportsButton addTarget:self action:@selector(presentReports:) forControlEvents:UIControlEventAllTouchEvents];
+    [self.reportsButton addTarget:self action:@selector(presentReports:) forControlEvents:UIControlEventTouchUpInside];
     
     self.UILine = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width / 2, 60, 10, 40)];
     self.UILine.text = @"|";
     self.UILine.tintColor = [UIColor grayColor];
     
-    self.status = [[NSString alloc]initWithString:@"Incidentes"];
+    self.status = @"Incidentes";
     
     [self.view addSubview:tableView];
     [self.view addSubview:self.incidentsButton];
@@ -84,7 +82,7 @@
 
 - (void)didTapConnect:(id)sender {
 
-    UIViewController *newAlert = [[NuevaAlertaViewController alloc]initWithNibName:@"NuevaAlertaViewController" bundle:nil];
+    UIViewController *newAlert = [[NewAlertViewController alloc] init];
     self.delegate.window.rootViewController = newAlert;
 }
 
@@ -94,13 +92,13 @@
 }
 
 -(void)presentIncidents:(id)sender {
-    NSLog(@"Incidentes");
+    
     self.status = @"Incidentes";
     [tableView reloadData];
 }
 
 -(void)presentReports:(id)sender {
-    NSLog(@"Reportes");
+
     self.status = @"Reportes";
     [tableView reloadData]; 
 }

@@ -14,7 +14,7 @@
 -(void)getNews;
 -(void)getReports;
 -(void)getPhones; 
--(void)registration:(NSString *)name lastname:(NSString *)lstname password:(NSString *)passwd email:(NSString *)email user:(NSString *)user phone:(NSString *)phone;
--(void) auth:(NSString *)passwd user:(NSString *)user;
+-(void)registration:(NSDictionary *)parameters login:(NSDictionary *)params;
+-(void) auth:(NSDictionary *)parameters; 
 
 @end

@@ -8,7 +8,7 @@
 
 #import "PhonesViewController.h"
 #import "CustomCell.h"
-#import "NuevaAlertaViewController.h"
+#import "NewAlertViewController.h"
 
 
 @interface PhonesViewController ()
@@ -57,7 +57,7 @@
 }
 
 - (void)didTapConnect:(id)sender {
-    NuevaAlertaViewController *newAlert = [[NuevaAlertaViewController alloc]init];
+    NewAlertViewController *newAlert = [[NewAlertViewController alloc]init];
     
     [self presentViewController:newAlert animated:YES completion:nil];
 }

@@ -15,6 +15,5 @@
 @property UITextField *passw;
 @property UITextField *lstn;
 @property UIImageView *logo;
-
-@property (retain, nonatomic) IBOutlet UIButton *registration; 
+@property UIButton *login; 
 @end

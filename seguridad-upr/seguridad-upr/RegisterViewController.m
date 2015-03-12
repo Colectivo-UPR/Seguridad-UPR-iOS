@@ -8,17 +8,18 @@
 
 #import "RegisterViewController.h"
 #import "HTTPRequestsViewController.h"
+#import "LoginViewController.h"
+
 @interface RegisterViewController ()
 
 @end
 
 @implementation RegisterViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        
-        self.title = @"Registro";
-        
+- (instancetype)init
+{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
         
     }
     return self;
@@ -31,7 +32,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.jpg"]];
     self.logo  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"miupi-login.png"]];
     
-    self.logo.frame = CGRectMake(50, 100, self.view.bounds.size.width - 100, 70);
+    self.logo.frame = CGRectMake(50, 90, self.view.bounds.size.width - 100, 80);
     self.email = [[UITextField alloc]initWithFrame:CGRectMake(20, 300, self.view.bounds.size.width - 40, 40)];
     self.passw = [[UITextField alloc]initWithFrame:CGRectMake(20, 360, self.view.bounds.size.width - 40, 40)];
     self.name  = [[UITextField alloc]initWithFrame:CGRectMake(20, 180, self.view.bounds.size.width - 40, 40)];
@@ -63,7 +64,7 @@
     [login setTitle:@"Registrame" forState:UIControlStateNormal];
     login.backgroundColor = [UIColor redColor];
     login.tintColor = [UIColor redColor];
-    [login addTarget:self action:@selector(didTapLogin:) forControlEvents:UIControlEventAllTouchEvents];
+    [login addTarget:self action:@selector(didTapToReg:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.email];
     [self.view addSubview:self.passw];
@@ -73,14 +74,35 @@
     [self.view addSubview:login];
 }
 
+-(void)didTapToReg:(id)sender
+{
+    NSDictionary *parameters = @{@"email": self.email.text,
+                                 @"first_name":self.name.text,
+                                 @"last_name":self.lstn.text,
+                                 @"password":self.passw.text,
+                                 };
 
--(void)registrationTapped:(id)sender {
+    NSDictionary *params = @{@"email": self.email.text,
+                            @"password":self.passw.text,
+                            };
+    
+    HTTPRequestsViewController *requests = [[HTTPRequestsViewController alloc]init];
+    [requests registration:parameters login:params];
     
 }
 
--(void)didTapLogin:(id)sender {
+-(void)didTapToLogin:(id)sender
+{
+    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    LoginViewController *views = [[LoginViewController alloc] init];
+    delegate.window.rootViewController = views;
+    
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

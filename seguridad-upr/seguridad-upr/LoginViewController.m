@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 Colectivo-UPR. All rights reserved.
 //
 
-#import "LoginViewController.h"
-#import "ViewController.h"
 #import "AppDelegate.h"
+#import "Constants.h"
+#import "ViewController.h"
+#import "LoginViewController.h"
 #import "HTTPRequestsViewController.h"
 #import "RegisterViewController.h"
 
@@ -19,24 +20,24 @@
 @implementation LoginViewController
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-        self.title = @"Trolleys";
+- (instancetype)init
+{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
         
-        self.view.tintColor = [UIColor whiteColor];
     }
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.jpg"]];
     
     self.logo  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"miupi-login.png"]];
     
-    self.logo.frame = CGRectMake(50, 100, self.view.bounds.size.width - 100, 60);
+    self.logo.frame = CGRectMake(50, 90, self.view.bounds.size.width - 100, 80);
     self.email = [[UITextField alloc]initWithFrame:CGRectMake(20, 200, self.view.bounds.size.width - 40, 40)];
     self.passw = [[UITextField alloc]initWithFrame:CGRectMake(20, 260, self.view.bounds.size.width - 40, 40)];
     
@@ -62,82 +63,47 @@
     [login setTitle:@"Ingreso" forState:UIControlStateNormal];
     login.backgroundColor = [UIColor redColor];
     login.tintColor = [UIColor redColor];
-    [login addTarget:self action:@selector(didTapLogin:) forControlEvents:UIControlEventAllTouchEvents];
-
-    UIButton *logged = [[UIButton alloc]initWithFrame:CGRectMake(20, 370, self.view.bounds.size.width - 40, 40)];
-    [logged setTitle:@"No tengo cuenta, Registame" forState:UIControlStateNormal];
-    logged.backgroundColor = [UIColor redColor];
-    logged.tintColor = [UIColor redColor];
-    [logged addTarget:self action:@selector(didTapRegister:) forControlEvents:UIControlEventAllTouchEvents];
+    [login addTarget:self action:@selector(didTapToLogin:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.email];
     [self.view addSubview:self.passw];
     [self.view addSubview:self.logo] ;
     [self.view addSubview:login];
-    [self.view addSubview:logged];
 }
 
--(void)didTapLogin:(id)sender {
+-(void)didTapToLogin:(id)sender
+{
     
     [self.indicator startAnimating];
     
-    NSLog(@"email %@", self.email.text);
-    NSLog(@"passw %@", self.passw.text);
+    DLog(@"email %@", self.email.text);
+    DLog(@"passw %@", self.passw.text);
+    
+    NSDictionary *parameters = @{@"email":self.email.text,
+                                 @"password":self.passw.text};
     
     HTTPRequestsViewController *requests = [[HTTPRequestsViewController alloc]init];
-    [requests auth:self.email.text user:self.passw.text];
-    
-//    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
-//    ViewController *views = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
-//    delegate.window.rootViewController = views; 
-    
+    [requests auth:parameters];
     
 }
--(void)didTapRegister:(id)sender {
+-(void)didTapRegister:(id)sender
+{
     AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
-    RegisterViewController *views = [[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
+    RegisterViewController *views = [[RegisterViewController alloc] init];
     delegate.window.rootViewController = views;
     
 }
 
-- (UIColor *)getUIColorObjectFromHexString:(NSString *)hexStr alpha:(CGFloat)alpha {
-    // Convert hex string to an integer
-    unsigned int hexint = [self intFromHexString:hexStr];
-    
-    // Create color object, specifying alpha as well
-    UIColor *color =
-    [UIColor colorWithRed:((CGFloat) ((hexint & 0xFF0000) >> 16))/255
-                    green:((CGFloat) ((hexint & 0xFF00) >> 8))/255
-                     blue:((CGFloat) (hexint & 0xFF))/255
-                    alpha:alpha]; //f6f0e9
-    
-    return color;
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
     [self.view endEditing:YES];
 }
 
-- (unsigned int)intFromHexString:(NSString *)hexStr {
-    unsigned int hexInt = 0;
-    
-    // Create scanner
-    NSScanner *scanner = [NSScanner scannerWithString:hexStr];
-    
-    // Tell scanner to skip the # character
-    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"#"]];
-    
-    // Scan hex value
-    [scanner scanHexInt:&hexInt];
-    
-    return hexInt;
-}
-
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 
 @end

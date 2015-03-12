@@ -17,7 +17,4 @@
 @property UIImageView *logo;
 @property UIActivityIndicatorView *indicator;
 
-
--(void)loginRequest; 
-
 @end

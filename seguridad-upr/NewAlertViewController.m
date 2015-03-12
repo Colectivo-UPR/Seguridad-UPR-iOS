@@ -15,43 +15,13 @@
 
 @implementation NewAlertViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-        
+- (instancetype)init
+{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
         self.title = @"Someter Alerta";
     }
     return self;
-}
-
-- (unsigned int)intFromHexString:(NSString *)hexStr {
-    unsigned int hexInt = 0;
-    
-    // Create scanner
-    NSScanner *scanner = [NSScanner scannerWithString:hexStr];
-    
-    // Tell scanner to skip the # character
-    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"#"]];
-    
-    // Scan hex value
-    [scanner scanHexInt:&hexInt];
-    
-    return hexInt;
-}
-
-- (UIColor *)getUIColorObjectFromHexString:(NSString *)hexStr alpha:(CGFloat)alpha
-{
-    // Convert hex string to an integer
-    unsigned int hexint = [self intFromHexString:hexStr];
-    
-    // Create color object, specifying alpha as well
-    UIColor *color =
-    [UIColor colorWithRed:((CGFloat) ((hexint & 0xFF0000) >> 16))/255
-                    green:((CGFloat) ((hexint & 0xFF00) >> 8))/255
-                     blue:((CGFloat) (hexint & 0xFF))/255
-                    alpha:alpha];
-    
-    return color;
 }
 
 - (void)viewDidLoad {

@@ -29,6 +29,7 @@
 		0A2F7E1C1A786E6D00A14493 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F7E1B1A786E6D00A14493 /* Bolts.framework */; };
 		0A2F7E1E1A786E8100A14493 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F7E1D1A786E8100A14493 /* Parse.framework */; };
 		0A876F7D1A3125C800A49B48 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A876F7C1A3125C800A49B48 /* RegisterViewController.m */; };
+		0AC33CF71AB08A8F0034C580 /* UPRUIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC33CF61AB08A8F0034C580 /* UPRUIColor.m */; };
 		0AC5A01F1A3943FA00727BD5 /* BG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC5A01E1A3943FA00727BD5 /* BG.png */; };
 		0ADEBE821A1EE0C50051FB83 /* HTTPRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADEBE811A1EE0C50051FB83 /* HTTPRequestsViewController.m */; };
 		0AFEC60A1A00897100B1B823 /* NewAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEC6081A00897100B1B823 /* NewAlertViewController.m */; };
@@ -81,6 +82,8 @@
 		0A876F7B1A3125C800A49B48 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		0A876F7C1A3125C800A49B48 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		0AC33CED1AAFED970034C580 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		0AC33CF51AB08A8F0034C580 /* UPRUIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPRUIColor.h; sourceTree = "<group>"; };
+		0AC33CF61AB08A8F0034C580 /* UPRUIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPRUIColor.m; sourceTree = "<group>"; };
 		0AC5A01E1A3943FA00727BD5 /* BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG.png; sourceTree = "<group>"; };
 		0ADEBE801A1EE0C50051FB83 /* HTTPRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPRequestsViewController.h; sourceTree = "<group>"; };
 		0ADEBE811A1EE0C50051FB83 /* HTTPRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRequestsViewController.m; sourceTree = "<group>"; };
@@ -135,8 +138,7 @@
 		0A01077419FA0C84004C2056 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0A01076819F9467F004C2056 /* CustomCell.m */,
-				0A01076719F9467F004C2056 /* CustomCell.h */,
+				0AC33CF41AB08A300034C580 /* Cells */,
 			);
 			name = Views;
 			path = ..;
@@ -217,6 +219,15 @@
 				0A1DDBA91A407FCA00422671 /* LoginViewController.h */,
 			);
 			name = Auth;
+			sourceTree = "<group>";
+		};
+		0AC33CF41AB08A300034C580 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0A01076719F9467F004C2056 /* CustomCell.h */,
+				0A01076819F9467F004C2056 /* CustomCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		CC2766A119F492700061AC9A = {
@@ -312,6 +323,8 @@
 		CC2766D919F4B7EC0061AC9A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				0AC33CF51AB08A8F0034C580 /* UPRUIColor.h */,
+				0AC33CF61AB08A8F0034C580 /* UPRUIColor.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -419,6 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A01078219FA0D3C004C2056 /* TrolleysViewController.m in Sources */,
+				0AC33CF71AB08A8F0034C580 /* UPRUIColor.m in Sources */,
 				CC2766B619F492700061AC9A /* ViewController.m in Sources */,
 				0A01077D19FA0D0D004C2056 /* DesalojoViewController.m in Sources */,
 				CC2766B319F492700061AC9A /* AppDelegate.m in Sources */,

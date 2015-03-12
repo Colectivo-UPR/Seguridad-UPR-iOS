@@ -7,9 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "AlertasViewController.h"
-#import "RecursosViewController.h"
-#import "TelefonosViewController.h"
+#import "AlertsViewController.h"
+#import "ResourcesViewController.h"
+#import "PhonesViewController.h"
 #import "DesalojoViewController.h"
 #import "TrolleysViewController.h"
 #import "AppDelegate.h"
@@ -37,38 +37,38 @@
     
     UITabBarController *tb = [[UITabBarController alloc]init];
     
-    UIViewController *alertas  = [[AlertasViewController alloc]initWithNibName:@"AlertasViewController" bundle:nil];
-    UINavigationController *ncAlertas = [[UINavigationController alloc]initWithRootViewController:alertas];
-    [ncAlertas.navigationBar setBarTintColor:[UIColor redColor]];
+    UIViewController *alerts  = [[AlertsViewController alloc] init];
+    UINavigationController *ncAlerts = [[UINavigationController alloc]initWithRootViewController:alerts];
+    [ncAlerts.navigationBar setBarTintColor:[UIColor redColor]];
     
-    UIViewController *telefono = [[TelefonosViewController alloc]initWithNibName:@"TelefonosViewController" bundle:nil];
-    UINavigationController *ncTelefono = [[UINavigationController alloc]initWithRootViewController:telefono];
-    [ncTelefono.navigationBar setBarTintColor:[UIColor redColor]];
+    UIViewController *phones = [[PhonesViewController alloc] init];
+    UINavigationController *ncPhones = [[UINavigationController alloc] initWithRootViewController:phones];
+    [ncPhones.navigationBar setBarTintColor:[UIColor redColor]];
     
-    UIViewController *desalojo = [[DesalojoViewController alloc]initWithNibName:@"DesalojoViewController" bundle:nil];
+    UIViewController *desalojo = [[DesalojoViewController alloc] init];
     UINavigationController *ncDesalojo = [[UINavigationController alloc]initWithRootViewController:desalojo];
     [ncDesalojo.navigationBar setBarTintColor:[UIColor redColor]];
     
-    UIViewController *trolleys = [[TrolleysViewController alloc]initWithNibName:@"TrolleysViewController" bundle:nil];
+    UIViewController *trolleys = [[TrolleysViewController alloc] init];
     UINavigationController *ncTrolleys = [[UINavigationController alloc]initWithRootViewController:trolleys];
     [ncTrolleys.navigationBar setBarTintColor:[UIColor redColor]];
     
-    UIViewController *recursos = [[RecursosViewController alloc]initWithNibName:@"TrolleysViewController" bundle:nil];
-    UINavigationController *ncRecursos = [[UINavigationController alloc]initWithRootViewController:recursos];
-    [ncRecursos.navigationBar setBarTintColor:[UIColor redColor]];
+    UIViewController *resources = [[ResourcesViewController alloc]init];
+    UINavigationController *ncResources = [[UINavigationController alloc]initWithRootViewController:resources];
+    [ncResources.navigationBar setBarTintColor:[UIColor redColor]];
     
     
     // Add navigation controllers to each tabitem
     
     
-    tb.viewControllers = @[ncAlertas, ncTelefono, ncDesalojo, ncTrolleys, ncRecursos];
+    tb.viewControllers = @[ncAlerts, ncPhones, ncDesalojo, ncTrolleys, ncResources];
     tb.tabBar.tintColor = [UIColor redColor];
     
-    alertas.title  = @"Alertas";
-    telefono.title = @"Teléfonos";
+    alerts.title  = @"Alertas";
+    phones.title = @"Teléfonos";
     desalojo.title = @"Desalojo";
     trolleys.title = @"Trolleys";
-    recursos.title = @"Recursos";
+    resources.title = @"Recursos";
     
     // Initialize Views
     
@@ -108,7 +108,6 @@
 }
 
 -(void)didTapConnect:(id)sender {
-    NSLog(@"HOLLA");
     
 }
 
