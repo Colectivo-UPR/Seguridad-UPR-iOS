@@ -2,12 +2,19 @@
 //  UPRDataManager.h
 //  seguridad-upr
 //
-//  Created by Xiomara on 3/3/15.
+//  Created by Xiomara on 3/29/15.
 //  Copyright (c) 2015 Colectivo-UPR. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface UPRDataManager : NSObject
+@interface UPRDataManager : UITableViewController
+
+@property NSString *titleAlert;
+@property NSString *inactiveMessage;
+@property NSString *generalMessage;
+@property NSString *invalidMessage;
+
++ (instancetype)sharedManager;
 
 @end

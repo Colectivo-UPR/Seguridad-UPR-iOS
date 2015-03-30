@@ -10,7 +10,7 @@
 #import "ViewController.h"
 #import "LoginViewController.h"
 #import "HTTPRequestsViewController.h"
-#import "RegisterViewController.h"
+#import "RegistrationAuthViewController.h"
 #import <Parse/Parse.h>
 
 @interface AppDelegate ()
@@ -39,11 +39,11 @@
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
     
-    //RegisterViewController *registration = [[RegisterViewController alloc] init];
+    RegistrationAuthViewController *registration = [[RegistrationAuthViewController alloc] init];
     ViewController *views = [[ViewController alloc] init];
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.window setRootViewController:views];
+    [self.window setRootViewController:registration];
     [self.window makeKeyAndVisible];
     
     return YES;

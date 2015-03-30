@@ -10,11 +10,12 @@
 
 @interface HTTPRequestsViewController : UIViewController
 
--(void)postNews:(NSString *)msg title:(NSString *)title date:(NSString *)date building:(NSString *)building; 
 -(void)getNews;
 -(void)getReports;
--(void)getPhones; 
--(void)registration:(NSDictionary *)parameters login:(NSDictionary *)params;
--(void) auth:(NSDictionary *)parameters; 
+-(void)getPhones;
+-(void)postNews:(NSDictionary *)params;
+-(void)auth:(NSDictionary *)parameters completion:(void (^)(NSString *status, NSString *token))block;
+-(void)registration:(NSDictionary *)parameters login:(NSDictionary *)params
+         completion:(void (^)(NSString *status, NSString *token))block;
 
 @end

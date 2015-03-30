@@ -11,6 +11,12 @@
 
 @interface NewAlertViewController ()
 
+@property (strong, nonatomic) UITextField *title;
+@property (strong, nonatomic) UITextField *message;
+@property (strong, nonatomic) UITextField *building;
+
+@property (strong, nonatomic) UIButton *post;
+
 @end
 
 @implementation NewAlertViewController
@@ -36,31 +42,37 @@
     
     UINavigationController *navbar = [[UINavigationController alloc]init];
 
-    UITextField *title = [[UITextField alloc]initWithFrame:CGRectMake(40, 100, 250, 30)];
-    title.placeholder = @"Título";
-    title.tintColor = [UIColor grayColor];
+    self.title = [[UITextField alloc]initWithFrame:CGRectMake(40, 100, 250, 30)];
+    self.title.placeholder = @"Título";
+    self.title.tintColor = [UIColor grayColor];
     
-    UITextField *message = [[UITextField alloc]initWithFrame:CGRectMake(40, 180, 250, 30)];
-    message.placeholder = @"Suceso";
-    message.tintColor = [UIColor grayColor];
+    self.message = [[UITextField alloc]initWithFrame:CGRectMake(40, 180, 250, 30)];
+    self.message.placeholder = @"Suceso";
+    self.message.tintColor = [UIColor grayColor];
     
-    UITextField *building = [[UITextField alloc]initWithFrame:CGRectMake(40, 140, 250, 30)];
-    building.placeholder = @"Edificio";
-    building.tintColor = [UIColor grayColor];
+    self.building = [[UITextField alloc]initWithFrame:CGRectMake(40, 140, 250, 30)];
+    self.building.placeholder = @"Edificio";
+    self.building.tintColor = [UIColor grayColor];
     
-    UIButton *post = [[UIButton alloc]initWithFrame:CGRectMake(40, 230, 250, 40)];
-    post.tintColor = [UIColor grayColor];
+    self.post = [[UIButton alloc]initWithFrame:CGRectMake(40, 230, 250, 40)];
+    self.post.tintColor = [UIColor grayColor];
     
     navbar.navigationItem.leftBarButtonItem = self.cancel;
     
-    [self.view addSubview:title];
-    [self.view addSubview:message];
-    [self.view addSubview:building];
-    [self.view addSubview:post];
+    [self.view addSubview:self.title];
+    [self.view addSubview:self.message];
+    [self.view addSubview:self.building];
+    [self.view addSubview:self.post];
     [self.view addSubview:navbar.view];
 }
 
 - (void)didTapConnect:(id)sender {
+    
+    NSDictionary *params = @{@"title":self.title.text,
+                             @"message":self.message.text,
+                             @"faculty":self.building.text,
+                             @"lat":@"0.0",
+                             @"lon":@"0.0"};
     
     [self dismissViewControllerAnimated:YES completion:nil];
     

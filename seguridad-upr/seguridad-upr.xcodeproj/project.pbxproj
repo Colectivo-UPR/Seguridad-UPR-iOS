@@ -28,7 +28,8 @@
 		0A2F7E161A77E19B00A14493 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F7E151A77E19B00A14493 /* libsqlite3.dylib */; };
 		0A2F7E1C1A786E6D00A14493 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F7E1B1A786E6D00A14493 /* Bolts.framework */; };
 		0A2F7E1E1A786E8100A14493 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F7E1D1A786E8100A14493 /* Parse.framework */; };
-		0A876F7D1A3125C800A49B48 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A876F7C1A3125C800A49B48 /* RegisterViewController.m */; };
+		0A56D40C1AC4A221009D5237 /* RegistrationAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A56D40B1AC4A221009D5237 /* RegistrationAuthViewController.m */; };
+		0A56D41C1AC8EC06009D5237 /* UPRDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A56D41B1AC8EC06009D5237 /* UPRDataManager.m */; };
 		0AC33CF71AB08A8F0034C580 /* UPRUIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC33CF61AB08A8F0034C580 /* UPRUIColor.m */; };
 		0AC5A01F1A3943FA00727BD5 /* BG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC5A01E1A3943FA00727BD5 /* BG.png */; };
 		0ADEBE821A1EE0C50051FB83 /* HTTPRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADEBE811A1EE0C50051FB83 /* HTTPRequestsViewController.m */; };
@@ -79,8 +80,10 @@
 		0A2F7E151A77E19B00A14493 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0A2F7E1B1A786E6D00A14493 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		0A2F7E1D1A786E8100A14493 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		0A876F7B1A3125C800A49B48 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
-		0A876F7C1A3125C800A49B48 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		0A56D40A1AC4A221009D5237 /* RegistrationAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationAuthViewController.h; sourceTree = "<group>"; };
+		0A56D40B1AC4A221009D5237 /* RegistrationAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationAuthViewController.m; sourceTree = "<group>"; };
+		0A56D41A1AC8EC06009D5237 /* UPRDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPRDataManager.h; sourceTree = "<group>"; };
+		0A56D41B1AC8EC06009D5237 /* UPRDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPRDataManager.m; sourceTree = "<group>"; };
 		0AC33CED1AAFED970034C580 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		0AC33CF51AB08A8F0034C580 /* UPRUIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPRUIColor.h; sourceTree = "<group>"; };
 		0AC33CF61AB08A8F0034C580 /* UPRUIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPRUIColor.m; sourceTree = "<group>"; };
@@ -213,10 +216,10 @@
 		0AC33CF31AAFF3770034C580 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				0A876F7B1A3125C800A49B48 /* RegisterViewController.h */,
-				0A876F7C1A3125C800A49B48 /* RegisterViewController.m */,
 				0A1DDBAA1A407FCA00422671 /* LoginViewController.m */,
 				0A1DDBA91A407FCA00422671 /* LoginViewController.h */,
+				0A56D40A1AC4A221009D5237 /* RegistrationAuthViewController.h */,
+				0A56D40B1AC4A221009D5237 /* RegistrationAuthViewController.m */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -297,6 +300,8 @@
 				0AC33CF11AAFF2C70034C580 /* Networking */,
 				CC2766B119F492700061AC9A /* AppDelegate.h */,
 				CC2766B219F492700061AC9A /* AppDelegate.m */,
+				0A56D41A1AC8EC06009D5237 /* UPRDataManager.h */,
+				0A56D41B1AC8EC06009D5237 /* UPRDataManager.m */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -432,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A01078219FA0D3C004C2056 /* TrolleysViewController.m in Sources */,
+				0A56D41C1AC8EC06009D5237 /* UPRDataManager.m in Sources */,
 				0AC33CF71AB08A8F0034C580 /* UPRUIColor.m in Sources */,
 				CC2766B619F492700061AC9A /* ViewController.m in Sources */,
 				0A01077D19FA0D0D004C2056 /* DesalojoViewController.m in Sources */,
@@ -442,7 +448,7 @@
 				0A1DDBAC1A407FCA00422671 /* LoginViewController.m in Sources */,
 				0A01077819FA0CF7004C2056 /* PhonesViewController.m in Sources */,
 				0A01077219FA0C71004C2056 /* AlertsViewController.m in Sources */,
-				0A876F7D1A3125C800A49B48 /* RegisterViewController.m in Sources */,
+				0A56D40C1AC4A221009D5237 /* RegistrationAuthViewController.m in Sources */,
 				0ADEBE821A1EE0C50051FB83 /* HTTPRequestsViewController.m in Sources */,
 				0A01076919F9467F004C2056 /* CustomCell.m in Sources */,
 			);

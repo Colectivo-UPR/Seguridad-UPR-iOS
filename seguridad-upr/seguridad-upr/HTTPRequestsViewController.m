@@ -30,184 +30,129 @@
     [super didReceiveMemoryWarning];
 }
 
--(NSMutableURLRequest *)RequestInit:(NSString *)url data:(NSData *)data method:(NSString *)method
+- (NSMutableURLRequest *)RequestInit:(NSString *)url data:(NSData *)data method:(NSString *)method
 {
+    NSString *token = [[NSString alloc]initWithString:[[NSUserDefaults standardUserDefaults]stringForKey:@"token"]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:method];
     [request setHTTPBody:data];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
+    if (token) {
+        [request addValue:[NSString stringWithFormat:@"Token %@",token] forHTTPHeaderField:@"Authorization"];
+    }
     return request;
     
 }
 
--(void)registration:(NSDictionary *)parameters login:(NSDictionary *)params {
+- (BOOL)isValid:(NSURLResponse *)response
+{
+    NSHTTPURLResponse *responseCode = (NSHTTPURLResponse *) response;
+    
+    if([responseCode statusCode] == 201 || [responseCode statusCode] == 201){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+- (NSDictionary *)serializeData:(NSData *)data
+{
+    NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
+                                                           options:NSJSONReadingMutableLeaves error:nil];
+    DLog(@"Response %@", result);
+    return result;
+
+}
+
+- (void)registration:(NSDictionary *)parameters login:(NSDictionary *)params
+         completion:(void (^)(NSString *status, NSString *token))block
+{
 
     NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
-    NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/register" data:data method:@"POST"];
+    NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/register"
+                                                data:data
+                                              method:@"POST"];
     
-    NSHTTPURLResponse *responseCode = nil;
-    
-    [NSURLConnection sendAsynchronousRequest:request queue: NSOperationQueuePriorityNormal
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue: [NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-
-        DLog(@"HTTP register status code %li", (long)[responseCode statusCode]);
-        
-        if([responseCode statusCode] == 201){
-            double delayInSeconds = 0.7;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [self auth:params];
-            });
-        }
-        else {
-            DLog(@"HTTP register status code %li", (long)[responseCode statusCode]);
+    
+        if([self isValid:response]){
+            block(@"valid", nil);
+        } else {
+            block(@"invalid", nil);
+            DLog("Response: %@", response);
         }
     }];
 }
 
--(void)postNews:(NSString *)msg title:(NSString *)title date:(NSString *)date building:(NSString *)building {
+- (void)auth:(NSDictionary *)parameters completion:(void (^)(NSString *status, NSString *token))block
+{
     
-    NSDictionary *params = @{@"title":title, @"message":msg, @"message": msg, @"faculty":building, @"lat":@"0.0", @"lon":@"0.0"};
+    NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
+    NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/api-token-auth/"
+                                                data:data
+                                              method:@"POST"];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (data != nil) {
+            NSDictionary *result = [self serializeData:data];
+            if([self isValid:response]){
+                [[NSUserDefaults standardUserDefaults]setValue:[result valueForKey:@"token"] forKey:@"token"];
+                block([result valueForKey:@"token"], @"active");
+            } else {
+                if ([result valueForKey:@"non_field_errors"]) {
+                    block(nil, @"inactive");
+                }
+            }
+        } else {
+            block(nil, @"nil");
+        }
+    }];
+}
+
+- (void)postNews:(NSDictionary *)params
+{
     NSData *data = [NSJSONSerialization dataWithJSONObject:params options:0 error:nil];
-    
     NSMutableURLRequest *request = [self RequestInit:@"%@/create-incident/" data:data method:@"POST"];
-    
-    NSHTTPURLResponse *responseCode = nil;
     
     [NSURLConnection sendAsynchronousRequest:request queue: NSOperationQueuePriorityNormal
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                                
-       DLog(@"HTTP register status code %li", (long)[responseCode statusCode]);
-       
-       if([responseCode statusCode] == 201){
-           double delayInSeconds = 0.7;
-           dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-           dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-           });
-       }
-       else {
-           DLog(@"HTTP register status code %li", (long)[responseCode statusCode]);
-       }
-    }];
+                               if([self isValid:response]){
+                                   double delayInSeconds = 0.7;
+                                   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+                                   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                                   });
+                               } else {
+                                   DLog(@"ELSE");
+                               }
+                           }];
 }
 
--(void)auth:(NSDictionary *)parameters {
+- (void)getNews
+{
+    //NSMutableURLRequest *request = [self RequestInit:@"/incidents/" data:nil method:@"GET"];
 
-    NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
-    NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/api-token-auth/" data:data method:@"POST"];
-
-    NSHTTPURLResponse *responseCode = nil;
-    
-    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:nil];
-    
-    if([responseCode statusCode] != 200){
-        DLog(@"HTTP login status code %li", (long)[responseCode statusCode]);
-    }
-    else {
-        AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
-        
-        delegate.incidents = [NSJSONSerialization JSONObjectWithData:response
-                                                  options:NSJSONReadingMutableLeaves
-                                                  error:nil];
-        delegate.incidents = [delegate.incidents valueForKey:@"results"];
-        
-        
-        ViewController *views = [[ViewController alloc] init];
-        delegate.window.rootViewController = views;
-    }
-}
-
--(void)getNews {
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-
-        NSString *token = [[NSString alloc]initWithString:[[NSUserDefaults standardUserDefaults]stringForKey:@"token"]];
-        NSLog(@"token: %@", token);
-    
-        [request setHTTPMethod:@"GET"];
-        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/incidents/",self.baseURL]]];
-        [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request addValue:[NSString stringWithFormat:@"Token %@",token] forHTTPHeaderField:@"Authorization"];
-    
-        NSError *error = [[NSError alloc] init];
-        NSHTTPURLResponse *responseCode = nil;
-        
-        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-    
-        if([responseCode statusCode] != 200){
-            NSLog(@"HTTP status code %li", (long)[responseCode statusCode]);
-            NSLog(@"nil");
-        }
-        else {
-            AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
-
-            delegate.incidents = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:nil];
-            delegate.incidents = [delegate.incidents valueForKey:@"results"]; 
-            
-            
-            ViewController *views = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
-            delegate.window.rootViewController = views;
-        }
 }
 
 
--(void)getReports {
-    
-    NSString *token = [[NSString alloc]initWithString:[[NSUserDefaults standardUserDefaults]stringForKey:@"token"]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+- (void)getReports
+{
+    //NSMutableURLRequest *request = [self RequestInit:@"" data:nil method:@"GET"];
 
-    [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/reports/",self.baseURL]]];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:[NSString stringWithFormat:@"Token %@",token] forHTTPHeaderField:@"Authorization"];
-    
-    NSError *error = [[NSError alloc] init];
-    NSHTTPURLResponse *responseCode = nil;
-    
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-    
-    if([responseCode statusCode] != 200){
-        NSLog(@"HTTP status code %li", (long)[responseCode statusCode]);
-        NSLog(@"nil");
-    }
-    else {
-        AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
-        delegate.reports = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
-        
-        delegate.reports = [delegate.reports valueForKey:@"results"]; 
-        NSLog(@"%@", delegate.reports);
-
-    }
 }
 
--(void)getPhones {
-    NSString *token = [[NSString alloc]initWithString:[[NSUserDefaults standardUserDefaults]stringForKey:@"token"]];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/phones/",self.baseURL]]];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:[NSString stringWithFormat:@"Token %@",token] forHTTPHeaderField:@"Authorization"];
-    
-    NSError *error = [[NSError alloc] init];
-    NSHTTPURLResponse *responseCode = nil;
-    
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-    
-    if([responseCode statusCode] != 200){
-        NSLog(@"HTTP status code %li", (long)[responseCode statusCode]);
-        NSLog(@"nil");
-    }
-    else {
-        AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
-        delegate.phones = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
-        delegate.phones = [delegate.phones valueForKey:@"results"];
-        
-        NSLog(@"%@", delegate.phones);
-        
-    }
-}
+- (void)getPhones
+{
+    //NSMutableURLRequest *request = [self RequestInit:@"" data:nil method:@"GET"];
 
+    //    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    //    delegate.phones = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
+    //    delegate.phones = [delegate.phones valueForKey:@"results"];
+}
 @end

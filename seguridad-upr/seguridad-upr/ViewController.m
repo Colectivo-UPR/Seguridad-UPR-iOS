@@ -93,14 +93,14 @@
     
     
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:tb];
-    nc.navigationBar.tintColor = [UIColor whiteColor];
+    //nc.navigationBar.tintColor = [UIColor whiteColor];
     nc.navigationBar.backgroundColor = [UIColor redColor]; 
     
     UIImage *img = [UIImage imageNamed:@"post.png"];
     
     UIBarButtonItem *alertButton = [[UIBarButtonItem alloc]initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
     
-    alertButton.tintColor = [UIColor whiteColor];
+    //alertButton.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = alertButton;
     nc.tabBarController.navigationItem.rightBarButtonItem = alertButton;
     tb.navigationController.navigationItem.rightBarButtonItem = alertButton;
