@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
+@protocol controllerDelegate;
+
 @interface LoginViewController : UIViewController
 
 @property UITextField *email;
@@ -16,5 +18,15 @@
 @property UIButton *login;
 @property UIImageView *logo;
 @property UIActivityIndicatorView *indicator;
+
+@property id <controllerDelegate> delegate;
+
+- (instancetype)initWithAlert:(NSDictionary *)alert;
+
+@end
+
+@protocol controllerDelegate <NSObject>
+
+- (void)createAlert:(NSDictionary *)attributes;
 
 @end

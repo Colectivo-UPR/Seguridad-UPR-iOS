@@ -9,10 +9,13 @@
 #import "RegistrationAuthViewController.h"
 #import "HTTPRequestsViewController.h"
 #import "LoginViewController.h"
+#import "UPRDataManager.h"
 #import "ViewController.h"
 #import "Constants.h"
 
 @interface RegistrationAuthViewController()
+
+@property UIActivityIndicatorView *indicator; 
 
 @end
 
@@ -76,6 +79,11 @@
     
     [self.view addSubview:self.passw];
     
+    self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+    [self.indicator setCenter:self.view.center];
+    [self.view addSubview:self.indicator];
+    
     self.registerButton = [[UIButton alloc]initWithFrame:CGRectMake(20, 400, self.view.bounds.size.width - 40, 40)];
     self.registerButton.backgroundColor = [UIColor redColor];
     
@@ -84,12 +92,14 @@
     
     [self.view addSubview:self.registerButton];
     
-    self.redirectButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 450, self.view.bounds.size.width - 40, 40)];
+    self.redirectButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.redirectButton.frame = CGRectMake(20, 450, self.view.bounds.size.width - 40, 40);
     self.redirectButton.backgroundColor = [UIColor clearColor];
     self.redirectButton.font = [UIFont systemFontOfSize:12.0];
-    
+    self.redirectButton.tintColor = [UIColor blackColor];
+
     [self.redirectButton setTintColor:[UIColor blackColor]]; 
-    [self.redirectButton setTitle:@"Ya tengo cuenta en MiUPI Watch" forState:UIControlStateNormal];
+    [self.redirectButton setTitle:@"Ya tengo cuenta, entrar" forState:UIControlStateNormal];
     [self.redirectButton addTarget:self action:@selector(didTapToRedirect:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.redirectButton];
@@ -106,38 +116,34 @@
     NSDictionary *parameters = @{@"email": self.email.text,
                                  @"first_name":self.name.text,
                                  @"last_name":self.lstn.text,
-                                 @"password":self.passw.text,
+                                 @"password1":self.passw.text,
+                                 @"password2":self.passw.text,
                                  };
     
     NSDictionary *params = @{@"username": self.email.text,
                              @"password" :self.passw.text,
                              };
     
-    // CREATE A SHARED MANAGER OF HTTPS
-    HTTPRequestsViewController *requests = [[HTTPRequestsViewController alloc]init];
+    [self.indicator startAnimating];
+    
+    HTTPRequestsViewController *requests = [HTTPRequestsViewController sharedManager];
     [requests registration:parameters login:params completion:^(NSString *status, NSString *token) {
-        if ([status isEqual: @"valid"]) {
+        if ([status isEqual: @"alert"]) {
+            
+            NSDictionary *alert = @{@"title":[[UPRDataManager sharedManager]activeTitle],
+                                    @"message":[[UPRDataManager sharedManager]actionMessage]};
+            
+            LoginViewController *login = [[LoginViewController alloc] initWithAlert:alert];
+            [self presentViewController:login animated:YES completion:nil];
 
-            double delayInSeconds = 0.7;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                
-                [requests auth:params completion:^(NSString *status, NSString *token) {
-                    if ([status isEqual: @"active"]) {
-                        
-                        ViewController *views = [[ViewController alloc] init];
-                        [self presentViewController:views animated:YES completion:nil];
-                        
-                    } else {
-                        DLog(@"Your account is not active, please check your email");
-                    }
-                }];
-            });
-        } else {
-            DLog(@"Invalid Registration, please try again");
+        } if ([status isEqual: @"invalid"]) {
+            NSDictionary *alert = @{@"title":[[UPRDataManager sharedManager]titleAlert],
+                                    @"message":[[UPRDataManager sharedManager]generalMessage]};
+            
+            [self.delegate createAlert:alert];
+            [self.indicator stopAnimating]; 
         }
     }];
-
 }
 
 - (void)didTapToRedirect:(id)sender

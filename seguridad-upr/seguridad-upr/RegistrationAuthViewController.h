@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginViewController.h"
 
 @interface RegistrationAuthViewController : UIViewController
 
@@ -19,5 +20,7 @@
 @property UITextField *email;
 @property UITextField *lstn;
 @property UITextField *passw;
+
+@property id <controllerDelegate> delegate;
 
 @end

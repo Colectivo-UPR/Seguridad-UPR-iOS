@@ -10,6 +10,4 @@
 
 @interface NewAlertViewController : UIViewController
 
-@property (strong, nonatomic) UIBarButtonItem *cancel;
-
 @end

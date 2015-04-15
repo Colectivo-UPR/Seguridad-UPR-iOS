@@ -14,6 +14,8 @@
 @property NSString *inactiveMessage;
 @property NSString *generalMessage;
 @property NSString *invalidMessage;
+@property NSString *actionMessage;
+@property NSString *activeTitle; 
 
 + (instancetype)sharedManager;
 

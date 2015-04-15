@@ -17,7 +17,9 @@
 @interface LoginViewController ()
 
 @property (strong, nonatomic) UIButton *loginButton;
-@property (strong, nonatomic) UIButton *redirectButton; 
+@property (strong, nonatomic) UIButton *redirectButton;
+
+@property (strong, nonatomic) NSDictionary *alert;
 
 @end
 
@@ -30,6 +32,18 @@
     if (self) {
         
     }
+    return self;
+}
+
+- (instancetype)initWithAlert:(NSDictionary *)alert
+{
+    
+    self = [self init];
+    if (self) {
+        _alert = alert;
+        [self.delegate createAlert:alert];
+    }
+    
     return self;
 }
 
@@ -71,7 +85,8 @@
     [self.loginButton setTitle:@"Ingreso" forState:UIControlStateNormal];
     [self.loginButton addTarget:self action:@selector(didTapToLogin:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.redirectButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 350, self.view.bounds.size.width - 40, 40)];
+    self.redirectButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.redirectButton.frame = CGRectMake(20, 350, self.view.bounds.size.width - 40, 40);
     self.redirectButton.backgroundColor = [UIColor clearColor];
     self.redirectButton.tintColor = [UIColor blackColor];
     self.redirectButton.font = [UIFont systemFontOfSize:12.0];
@@ -84,9 +99,16 @@
     [self.view addSubview:self.logo] ;
     [self.view addSubview:self.loginButton];
     [self.view addSubview:self.redirectButton];
+
 }
 
-#pragma mark - Private Methods
+- (void)viewWillAppear:(BOOL)animated
+{
+    DLog(@"view will appear"); 
+    [self.delegate createAlert:self.alert];
+}
+
+#pragma mark - Delegate Methods
 
 - (void)createAlert:(NSDictionary *)attributes
 {
@@ -112,14 +134,15 @@
     NSDictionary *parameters = @{@"username":self.email.text,
                                  @"password":self.passw.text};
     
-    HTTPRequestsViewController *requests = [[HTTPRequestsViewController alloc]init];
+    HTTPRequestsViewController *requests = [HTTPRequestsViewController sharedManager];
     [requests auth:parameters completion:^(NSString *status, NSString *token) {
+        DLog(@"status: %@", status);
         if ([status isEqual:@"active"]) {
             ViewController *views = [[ViewController alloc] init];
             [self presentViewController:views animated:YES completion:nil];
         } else {
             NSDictionary *alert = @{@"title":[[UPRDataManager sharedManager]titleAlert],
-                                    @"message":[[UPRDataManager sharedManager]inactiveMessage]};
+                                    @"message":[[UPRDataManager sharedManager]actionMessage]};
             
             [self createAlert:alert];
             [self.indicator stopAnimating];
@@ -132,9 +155,7 @@
 }
 -(void)didTapRegister:(id)sender
 {
-    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
-    RegistrationAuthViewController *views = [[RegistrationAuthViewController alloc] init];
-    delegate.window.rootViewController = views;
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

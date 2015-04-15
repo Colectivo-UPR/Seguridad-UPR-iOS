@@ -8,6 +8,7 @@
 
 #import "AlertsViewController.h"
 #import "NewAlertViewController.h"
+#import "Constants.h"
 #import "CustomCell.h"
 #import "HTTPRequestsViewController.h"
 #import "AppDelegate.h"
@@ -16,12 +17,14 @@
 
 @end
 
-@implementation AlertsViewController {
+@implementation AlertsViewController
+{
     UITableView *tableView;
 }
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         
         self.title = @"Alertas";
@@ -32,42 +35,51 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 100, 330, 500) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.backgroundColor = [UIColor whiteColor];
-
-    UIImage *img = [UIImage imageNamed:@"post.png"];
     
-    self.alertButton = [[UIBarButtonItem alloc]initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
-    self.alertButton.tintColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = self.alertButton;
     self.delegate = [[UIApplication sharedApplication]delegate];
     
     self.incidentsButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 60, self.view.bounds.size.width / 2 -10, 40)];
+    self.incidentsButton.backgroundColor = [UIColor whiteColor];
+    self.incidentsButton.tintColor = [UIColor redColor];
+    
     [self.incidentsButton setTitle:@"Incidentes" forState:UIControlStateNormal];
     [self.incidentsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.incidentsButton setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
-    self.incidentsButton.backgroundColor = [UIColor whiteColor];
-    self.incidentsButton.tintColor = [UIColor redColor];
+
     [self.incidentsButton addTarget:self action:@selector(presentIncidents:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.reportsButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.bounds.size.width / 2, 60, self.view.bounds.size.width / 2 -10, 40)];
-    [self.reportsButton setTitle:@"Reportes" forState:UIControlStateNormal];
+    self.reportsButton = [[UIButton alloc]initWithFrame:
+                          CGRectMake(self.view.bounds.size.width / 2, 60, self.view.bounds.size.width / 2 -10, 40)];
+
     self.reportsButton.backgroundColor = [UIColor whiteColor];
     self.reportsButton.tintColor = [UIColor redColor];
+    
+    [self.reportsButton setTitle:@"Reportes" forState:UIControlStateNormal];
     [self.reportsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.reportsButton setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
     [self.reportsButton addTarget:self action:@selector(presentReports:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.UILine = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width / 2, 60, 10, 40)];
-    self.UILine.text = @"|";
-    self.UILine.tintColor = [UIColor grayColor];
-    
     self.status = @"Incidentes";
+    
+    UIImage *img = [UIImage imageNamed:@"post"];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithImage:img
+                                              style:UIBarButtonItemStylePlain
+                                              target:self
+                                              action:@selector(didTapNewAlert:)];
+
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bg.png"]
+                                                  forBarMetrics:UIBarMetricsDefault];
     
     [self.view addSubview:tableView];
     [self.view addSubview:self.incidentsButton];
@@ -80,40 +92,39 @@
     [tableView reloadInputViews];
 }
 
-- (void)didTapConnect:(id)sender {
+#pragma mark - Selector Methods
 
-    UIViewController *newAlert = [[NewAlertViewController alloc] init];
-    self.delegate.window.rootViewController = newAlert;
+-(void)didTapNewAlert:(id)sender
+{
+    NewAlertViewController *newAlert = [[NewAlertViewController alloc] init];
+    [self presentViewController:newAlert animated:YES completion:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void)presentIncidents:(id)sender {
-    
-    self.status = @"Incidentes";
+-(void)presentIncidents:(id)sender
+{
+    self.status = @"Alertas";
     [tableView reloadData];
 }
 
--(void)presentReports:(id)sender {
-
-    self.status = @"Reportes";
+-(void)presentReports:(id)sender
+{
+    self.status = @"Avisos";
     [tableView reloadData]; 
 }
 
+#pragma mark - UITableView Methods
 
--(NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section {
+-(NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
+{
     if ([self.status isEqualToString:@"Incidentes"]) {
         return self.delegate.incidents.count;
-    }
-    else {
+    } else {
         return self.delegate.reports.count;
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     CustomCell *cell = (CustomCell *)[theTableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
         cell = [[CustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
@@ -135,10 +146,6 @@
             
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateStyle:NSDateFormatterFullStyle];
-//            NSDate *date  = [dateFormatter dateFromString:[self.delegate.incidents valueForKey:@"incident_date"][indexPath.row]];
-            
-            // Convert to new Date Format
-//            NSString *newDate = [dateFormatter stringFromDate:date];
             
             cell.nameLabel.text = [self.delegate.incidents valueForKey:@"title"][indexPath.row];
             cell.prepTimeLabel.text = dateStr;
@@ -159,12 +166,20 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"hola");
+- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
 }
 
-- (CGFloat)tableView:(UITableView *)theTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)theTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 105.0;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

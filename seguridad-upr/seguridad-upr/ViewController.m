@@ -12,6 +12,7 @@
 #import "PhonesViewController.h"
 #import "DesalojoViewController.h"
 #import "TrolleysViewController.h"
+#import "NewAlertViewController.h"
 #import "AppDelegate.h"
 
 @interface ViewController ()
@@ -57,25 +58,18 @@
     UINavigationController *ncResources = [[UINavigationController alloc]initWithRootViewController:resources];
     [ncResources.navigationBar setBarTintColor:[UIColor redColor]];
     
-    
     // Add navigation controllers to each tabitem
-    
     
     tb.viewControllers = @[ncAlerts, ncPhones, ncDesalojo, ncTrolleys, ncResources];
     tb.tabBar.tintColor = [UIColor redColor];
     
-    alerts.title  = @"Alertas";
+    alerts.title = @"Alertas";
     phones.title = @"Teléfonos";
     desalojo.title = @"Desalojo";
     trolleys.title = @"Trolleys";
     resources.title = @"Recursos";
     
-    // Initialize Views
-    
-    // Set the icons
-    
     // Item 0
-    
     [(UITabBarItem *)[tb.tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"World-Icon"]];
     
     // Item 1
@@ -87,31 +81,20 @@
     // Item 3
     [(UITabBarItem *)[tb.tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"Trolley-Icon"]];
     
-    
     // Item 4
     [(UITabBarItem *)[tb.tabBar.items objectAtIndex:4] setImage:[UIImage imageNamed:@"Services-icon"]];
     
     
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:tb];
-    //nc.navigationBar.tintColor = [UIColor whiteColor];
-    nc.navigationBar.backgroundColor = [UIColor redColor]; 
+
+    [nc.navigationBar setBackgroundImage:[UIImage imageNamed:@"bg.png"] forBarMetrics:UIBarMetricsDefault];
+    nc.navigationBar.tintColor = [UIColor whiteColor];
     
-    UIImage *img = [UIImage imageNamed:@"post.png"];
-    
-    UIBarButtonItem *alertButton = [[UIBarButtonItem alloc]initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
-    
-    //alertButton.tintColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = alertButton;
-    nc.tabBarController.navigationItem.rightBarButtonItem = alertButton;
-    tb.navigationController.navigationItem.rightBarButtonItem = alertButton;
     delegate.window.rootViewController = tb;
 }
 
--(void)didTapConnect:(id)sender {
-    
-}
-
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

@@ -10,12 +10,14 @@
 
 @interface HTTPRequestsViewController : UIViewController
 
--(void)getNews;
--(void)getReports;
--(void)getPhones;
--(void)postNews:(NSDictionary *)params;
--(void)auth:(NSDictionary *)parameters completion:(void (^)(NSString *status, NSString *token))block;
--(void)registration:(NSDictionary *)parameters login:(NSDictionary *)params
+- (void)getNews;
+- (void)getReports;
+- (void)getPhones;
+- (void)postNews:(NSDictionary *)params;
+- (void)auth:(NSDictionary *)parameters completion:(void (^)(NSString *status, NSString *token))block;
+- (void)registration:(NSDictionary *)parameters login:(NSDictionary *)params
          completion:(void (^)(NSString *status, NSString *token))block;
+
++ (instancetype)sharedManager;
 
 @end

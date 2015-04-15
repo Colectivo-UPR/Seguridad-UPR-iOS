@@ -50,6 +50,8 @@
 {
     NSHTTPURLResponse *responseCode = (NSHTTPURLResponse *) response;
     
+    DLog(@"status code: %ld", (long)[responseCode statusCode]);
+    
     if([responseCode statusCode] == 201 || [responseCode statusCode] == 201){
         return true;
     } else {
@@ -71,7 +73,7 @@
 {
 
     NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
-    NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/register"
+    NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/rest-auth/registration/"
                                                 data:data
                                               method:@"POST"];
     
@@ -80,7 +82,7 @@
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
     
         if([self isValid:response]){
-            block(@"valid", nil);
+            block(@"alert", nil);
         } else {
             block(@"invalid", nil);
             DLog("Response: %@", response);
@@ -92,25 +94,39 @@
 {
     
     NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
-    NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/api-token-auth/"
+    NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/rest-auth/login/"
                                                 data:data
                                               method:@"POST"];
     
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        DLog(@"response: %@", response);
+        DLog(@"error: %@", error);
         if (data != nil) {
             NSDictionary *result = [self serializeData:data];
+            
+            DLog(@"Data is not nil");
+            
             if([self isValid:response]){
                 [[NSUserDefaults standardUserDefaults]setValue:[result valueForKey:@"token"] forKey:@"token"];
-                block([result valueForKey:@"token"], @"active");
+                
+                DLog(@"is valid");
+                
+                AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+                ViewController *views = [[ViewController alloc] init];
+                
+                delegate.window.rootViewController = views;
+                
             } else {
+                DLog(@"not valid");
                 if ([result valueForKey:@"non_field_errors"]) {
-                    block(nil, @"inactive");
+                    block(@"inactive", nil);
                 }
             }
         } else {
-            block(nil, @"nil");
+            DLog(@"vine al else");
+            block(@"inactive", @"nil");
         }
     }];
 }
@@ -155,4 +171,13 @@
     //    delegate.phones = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];
     //    delegate.phones = [delegate.phones valueForKey:@"results"];
 }
+
++ (instancetype)sharedManager
+{
+    static id sharedInstance = nil;
+    sharedInstance = [[[self class] alloc] init];
+    
+    return sharedInstance;
+}
+
 @end

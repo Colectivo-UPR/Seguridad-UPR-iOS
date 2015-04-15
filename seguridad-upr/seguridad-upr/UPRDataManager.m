@@ -17,7 +17,9 @@
         _titleAlert = @"UPR Seguridad";
         _inactiveMessage = @"Tu cuenta no ha sido activada, verifica tu email";
         _invalidMessage = @"Este email ya está en uso";
-        _generalMessage = @"Hubo un error, verifica tus credenciales y tu conexión al internet"; 
+        _generalMessage = @"Hubo un error, verifica tus credenciales y tu conexión al internet";
+        _actionMessage = @"Por favor activa tu cuenta, verifica tu correo electrónico y sigue las instrucciones";
+        _activeTitle = @"ACTIVA TU CUENTA";
     }
     return self;
 }

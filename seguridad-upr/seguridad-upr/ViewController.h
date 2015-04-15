@@ -10,7 +10,7 @@
 
 @interface ViewController : UIViewController
 
-@property UIBarButtonItem *alertButton; 
+@property (strong, nonatomic) UIBarButtonItem *alertButton;
 
 @end
 

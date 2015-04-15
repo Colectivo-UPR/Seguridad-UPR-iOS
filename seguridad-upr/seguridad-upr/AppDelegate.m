@@ -40,7 +40,7 @@
     [application registerForRemoteNotifications];
     
     RegistrationAuthViewController *registration = [[RegistrationAuthViewController alloc] init];
-    ViewController *views = [[ViewController alloc] init];
+    //ViewController *views = [[ViewController alloc] init];
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:registration];
