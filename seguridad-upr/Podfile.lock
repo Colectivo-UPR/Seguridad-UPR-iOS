@@ -1,13 +1,35 @@
 PODS:
-  - AFNetworking (1.3.4)
-  - PureLayout (2.0.5)
+  - AWSCore (2.1.1):
+    - Bolts (~> 1.1.0)
+    - GZIP (~> 1.0.3)
+    - Mantle (~> 1.4)
+    - Reachability (~> 3.1)
+    - UICKeyChainStore (~> 2.0)
+    - XMLDictionary (~> 1.4.0)
+  - AWSSNS (2.1.1):
+    - AWSCore (= 2.1.1)
+    - Bolts (~> 1.1.0)
+    - Mantle (~> 1.4)
+  - Bolts (1.1.4)
+  - GZIP (1.0.3)
+  - Mantle (1.5.4):
+    - Mantle/extobjc (= 1.5.4)
+  - Mantle/extobjc (1.5.4)
+  - Reachability (3.2)
+  - UICKeyChainStore (2.0.4)
+  - XMLDictionary (1.4)
 
 DEPENDENCIES:
-  - AFNetworking (~> 1.3.4)
-  - PureLayout (~> 2.0.1)
+  - AWSSNS
 
 SPEC CHECKSUMS:
-  AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
-  PureLayout: 63a3257320223e8edddcd3afb407445f85a6bf74
+  AWSCore: 0e82eabc27a96d765b1e2ad4d30b96c1cd298300
+  AWSSNS: 49d9144ec52c8650ba9207232fdd17c68289fac8
+  Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
+  GZIP: f0863fda354e8f83316508c0a2c7bbe385e39129
+  Mantle: 60acd0cd363e27d945bda0a6b8e90577112d28f3
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  UICKeyChainStore: 69eb0c3a6f669bccf16ba88de3b9069b71501361
+  XMLDictionary: f9f51601ba76678b594ab485f2b00ec1fed23724
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.3

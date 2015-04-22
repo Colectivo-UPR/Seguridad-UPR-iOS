@@ -11,7 +11,10 @@
 #import "LoginViewController.h"
 #import "HTTPRequestsViewController.h"
 #import "RegistrationAuthViewController.h"
-#import <Parse/Parse.h>
+
+#import "Constant.h"
+
+#import <AWSSNS/AWSSNS.h>
 
 @interface AppDelegate ()
 
@@ -27,20 +30,52 @@
     UIWindow *window = [[UIWindow alloc]initWithFrame:screenBounds];
     
     [self setWindow:window];
-    
-    [Parse setApplicationId:@"ey6t7sHwpuBhg3jxm4NacnT2JOrjdGEaFOuV6pvt"
-                  clientKey:@"4X7xr086XLQYXOIgrngkbwwg0RHAjjPy1XHmqxrm"];
 
-    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
-                                                    UIUserNotificationTypeBadge |
-                                                    UIUserNotificationTypeSound);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-                                                                             categories:nil];
-    [application registerUserNotificationSettings:settings];
-    [application registerForRemoteNotifications];
+    // Sets up Mobile Push Notification
+    application.applicationIconBadgeNumber = 0;
+    
+    UIMutableUserNotificationAction *readAction = [[UIMutableUserNotificationAction alloc] init];
+    readAction.identifier = @"READ_IDENTIFIER";
+    readAction.title = @"Read";
+    readAction.activationMode = UIUserNotificationActivationModeForeground;
+    readAction.destructive = NO;
+    readAction.authenticationRequired = YES;
+    
+    UIMutableUserNotificationAction *ignoreAction = [[UIMutableUserNotificationAction alloc] init];
+    ignoreAction.identifier = @"IGNORE_IDENTIFIER";
+    ignoreAction.title = @"Ignore";
+    ignoreAction.activationMode = UIUserNotificationActivationModeBackground;
+    ignoreAction.destructive = NO;
+    ignoreAction.authenticationRequired = NO;
+    
+    UIMutableUserNotificationAction *deleteAction = [[UIMutableUserNotificationAction alloc] init];
+    deleteAction.identifier = @"DELETE_IDENTIFIER";
+    deleteAction.title = @"Delete";
+    deleteAction.activationMode = UIUserNotificationActivationModeForeground;
+    deleteAction.destructive = YES;
+    deleteAction.authenticationRequired = YES;
+    
+    UIMutableUserNotificationCategory *messageCategory = [[UIMutableUserNotificationCategory alloc] init];
+    messageCategory.identifier = @"MESSAGE_CATEGORY";
+    [messageCategory setActions:@[readAction, ignoreAction, deleteAction] forContext:UIUserNotificationActionContextDefault];
+    [messageCategory setActions:@[readAction, deleteAction] forContext:UIUserNotificationActionContextMinimal];
+    
+    NSSet *categories = [NSSet setWithObject:messageCategory];
+    
+    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
+    
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+    
+    if(launchOptions!=nil){
+        NSString *msg = [NSString stringWithFormat:@"%@", launchOptions];
+        NSLog(@"%@",msg);
+        [self createAlert:msg];
+    }
+
     
     RegistrationAuthViewController *registration = [[RegistrationAuthViewController alloc] init];
-    //ViewController *views = [[ViewController alloc] init];
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:registration];
@@ -49,17 +84,52 @@
     return YES;
 }
 
-- (void)application:(UIApplication *)application
-didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    // Store the deviceToken in the current Installation and save it to Parse.
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    [currentInstallation setDeviceTokenFromData:deviceToken];
-    [currentInstallation saveInBackground];
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken{
+    NSLog(@"deviceToken: %@", deviceToken);
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error{
+    NSLog(@"Failed to register with error : %@", error);
 }
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    application.applicationIconBadgeNumber = 0;
+    NSString *msg = [NSString stringWithFormat:@"%@", userInfo];
+    NSLog(@"%@",msg);
+    [self createAlert:msg];
+}
+
+- (void)createAlert:(NSString *)msg {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Received" message:[NSString stringWithFormat:@"%@", msg]delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+}
+
+//- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler {
+//    AWSMobileAnalytics *mobileAnalytics = [AWSMobileAnalytics mobileAnalyticsForAppId:MobileAnalyticsAppId];
+//    id<AWSMobileAnalyticsEventClient> eventClient = mobileAnalytics.eventClient;
+//    id<AWSMobileAnalyticsEvent> pushNotificationEvent = [eventClient createEventWithEventType:@"PushNotificationEvent"];
+//    
+//    NSString *action = @"Undefined";
+//    if ([identifier isEqualToString:@"READ_IDENTIFIER"]) {
+//        action = @"read";
+//        NSLog(@"User selected 'Read'");
+//    } else if ([identifier isEqualToString:@"DELETE_IDENTIFIER"]) {
+//        action = @"Deleted";
+//        NSLog(@"User selected `Delete`");
+//    } else {
+//        action = @"Undefined";
+//    }
+//    
+//    [pushNotificationEvent addAttribute:action forKey:@"Action"];
+//    [eventClient recordEvent:pushNotificationEvent];
+//    
+//    [self.window.rootViewController.childViewControllers.firstObject performSelectorOnMainThread:@selector(displayUserAction:)
+//                                                                                      withObject:action
+//                                                                                   waitUntilDone:NO];
+//    
+//    completionHandler();
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

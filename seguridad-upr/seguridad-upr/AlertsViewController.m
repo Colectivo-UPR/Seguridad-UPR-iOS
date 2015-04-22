@@ -50,7 +50,7 @@
     self.incidentsButton.backgroundColor = [UIColor whiteColor];
     self.incidentsButton.tintColor = [UIColor redColor];
     
-    [self.incidentsButton setTitle:@"Incidentes" forState:UIControlStateNormal];
+    [self.incidentsButton setTitle:@"Alertas" forState:UIControlStateNormal];
     [self.incidentsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.incidentsButton setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
 
@@ -62,12 +62,12 @@
     self.reportsButton.backgroundColor = [UIColor whiteColor];
     self.reportsButton.tintColor = [UIColor redColor];
     
-    [self.reportsButton setTitle:@"Reportes" forState:UIControlStateNormal];
+    [self.reportsButton setTitle:@"Avisos" forState:UIControlStateNormal];
     [self.reportsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.reportsButton setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
     [self.reportsButton addTarget:self action:@selector(presentReports:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.status = @"Incidentes";
+    self.status = @"Alertas";
     
     UIImage *img = [UIImage imageNamed:@"post"];
     
@@ -129,7 +129,8 @@
     if (cell == nil) {
         cell = [[CustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
-    if ([self.status isEqualToString:@"Incidentes"]) {
+    if ([self.status isEqualToString:@"Alertas"]) {
+        DLog(@"alertas");
         if (self.delegate.incidents.count > 0) {
         
             NSString *dateStr = [self.delegate.incidents valueForKey:@"incident_date"][indexPath.row];
@@ -153,7 +154,8 @@
             cell.thumbnailImageView.image = [UIImage imageNamed:@"map.png"];
         }
     }
-    if ([self.status isEqualToString:@"Reportes"]) {
+    if ([self.status isEqualToString:@"Avisos"]) {
+        DLog(@"avisos");
         if (self.delegate.reports.count > 0) {
             
             cell.nameLabel.text = [self.delegate.reports valueForKey:@"title"][indexPath.row];

@@ -32,15 +32,17 @@
 
 - (NSMutableURLRequest *)RequestInit:(NSString *)url data:(NSData *)data method:(NSString *)method
 {
-    NSString *token = [[NSString alloc]initWithString:[[NSUserDefaults standardUserDefaults]stringForKey:@"token"]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     
+    NSString *token;
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:method];
     [request setHTTPBody:data];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     if (token) {
         [request addValue:[NSString stringWithFormat:@"Token %@",token] forHTTPHeaderField:@"Authorization"];
+    } else {
     }
     return request;
     
@@ -52,7 +54,7 @@
     
     DLog(@"status code: %ld", (long)[responseCode statusCode]);
     
-    if([responseCode statusCode] == 201 || [responseCode statusCode] == 201){
+    if([responseCode statusCode] == 201 || [responseCode statusCode] == 200){
         return true;
     } else {
         return false;
@@ -92,80 +94,88 @@
 
 - (void)auth:(NSDictionary *)parameters completion:(void (^)(NSString *status, NSString *token))block
 {
-    
+ 
     NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
+    DLog(@"data %@", data);
     NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/rest-auth/login/"
                                                 data:data
                                               method:@"POST"];
     
+    DLog(@"data %@", (data));
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         DLog(@"response: %@", response);
-        DLog(@"error: %@", error);
         if (data != nil) {
             NSDictionary *result = [self serializeData:data];
-            
-            DLog(@"Data is not nil");
             
             if([self isValid:response]){
                 [[NSUserDefaults standardUserDefaults]setValue:[result valueForKey:@"token"] forKey:@"token"];
                 
                 DLog(@"is valid");
-                
-                AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
-                ViewController *views = [[ViewController alloc] init];
-                
-                delegate.window.rootViewController = views;
+
+                block(@"active", [[NSUserDefaults standardUserDefaults]valueForKey:@"token"]); 
                 
             } else {
                 DLog(@"not valid");
+                
                 if ([result valueForKey:@"non_field_errors"]) {
                     block(@"inactive", nil);
                 }
             }
         } else {
             DLog(@"vine al else");
+            
             block(@"inactive", @"nil");
         }
     }];
 }
 
-- (void)postNews:(NSDictionary *)params
+- (void)postNews:(NSDictionary *)params completion:(void (^)(NSString *status, NSDictionary *news))block
 {
-    NSData *data = [NSJSONSerialization dataWithJSONObject:params options:0 error:nil];
-    NSMutableURLRequest *request = [self RequestInit:@"%@/create-incident/" data:data method:@"POST"];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
+    NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/create-incident/"
+                                                data:data method:@"POST"];
     
     [NSURLConnection sendAsynchronousRequest:request queue: NSOperationQueuePriorityNormal
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                                
-                               if([self isValid:response]){
-                                   double delayInSeconds = 0.7;
-                                   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-                                   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                                   });
-                               } else {
-                                   DLog(@"ELSE");
-                               }
-                           }];
+       if([self isValid:response]){
+           NSDictionary *news = [self serializeData:data];
+           block(@"completed", news);
+       } else {
+           block(@"error", nil);
+       }
+   }];
 }
 
-- (void)getNews
+- (void)getNews:(NSDictionary *)params completion:(void (^)(NSString *status, NSDictionary *news))block
 {
-    //NSMutableURLRequest *request = [self RequestInit:@"/incidents/" data:nil method:@"GET"];
+    
+    NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/incidents/" data:nil method:@"GET"];
+    [NSURLConnection sendAsynchronousRequest:request queue:NSOperationQueuePriorityNormal
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+       if ([self isValid:response]) {
+           NSDictionary *news = [self serializeData:data];
+           block(@"completed", news);
+       } else {
+           block(@"error", nil);
+       }
+    }];
 
 }
 
 
 - (void)getReports
 {
-    //NSMutableURLRequest *request = [self RequestInit:@"" data:nil method:@"GET"];
+    //NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/reports" data:nil method:@"GET"];
 
 }
 
 - (void)getPhones
 {
-    //NSMutableURLRequest *request = [self RequestInit:@"" data:nil method:@"GET"];
+    //NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/phones" data:nil method:@"GET"];
 
     //    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
     //    delegate.phones = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:nil];

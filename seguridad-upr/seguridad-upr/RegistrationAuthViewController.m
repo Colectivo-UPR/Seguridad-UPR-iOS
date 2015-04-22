@@ -141,7 +141,12 @@
                                     @"message":[[UPRDataManager sharedManager]generalMessage]};
             
             [self.delegate createAlert:alert];
-            [self.indicator stopAnimating]; 
+            [self.indicator stopAnimating];
+            
+            self.email.text = @"";
+            self.name.text = @"";
+            self.lstn.text = @"";
+            self.passw.text = @"";
         }
     }];
 }

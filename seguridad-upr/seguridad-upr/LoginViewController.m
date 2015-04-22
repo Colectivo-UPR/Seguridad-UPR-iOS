@@ -136,7 +136,6 @@
     
     HTTPRequestsViewController *requests = [HTTPRequestsViewController sharedManager];
     [requests auth:parameters completion:^(NSString *status, NSString *token) {
-        DLog(@"status: %@", status);
         if ([status isEqual:@"active"]) {
             ViewController *views = [[ViewController alloc] init];
             [self presentViewController:views animated:YES completion:nil];

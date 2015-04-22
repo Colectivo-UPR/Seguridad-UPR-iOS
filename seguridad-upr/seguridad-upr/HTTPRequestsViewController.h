@@ -10,10 +10,10 @@
 
 @interface HTTPRequestsViewController : UIViewController
 
-- (void)getNews;
+- (void)getNews:(NSDictionary *)params completion:(void (^)(NSString *status, NSDictionary *news))block; 
 - (void)getReports;
 - (void)getPhones;
-- (void)postNews:(NSDictionary *)params;
+- (void)postNews:(NSDictionary *)params completion:(void (^)(NSString *status, NSDictionary *news))block; 
 - (void)auth:(NSDictionary *)parameters completion:(void (^)(NSString *status, NSString *token))block;
 - (void)registration:(NSDictionary *)parameters login:(NSDictionary *)params
          completion:(void (^)(NSString *status, NSString *token))block;
