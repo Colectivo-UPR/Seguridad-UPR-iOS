@@ -86,6 +86,40 @@
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken{
     NSLog(@"deviceToken: %@", deviceToken);
+    
+    NSUInteger dataLength = [deviceToken length];
+    NSMutableString *deviceTokenString = [NSMutableString stringWithCapacity:dataLength*2];
+    const unsigned char *dataBytes = [deviceToken bytes];
+    for (NSInteger idx = 0; idx < dataLength; ++idx) {
+        [deviceTokenString appendFormat:@"%02x", dataBytes[idx]];
+    }
+    
+    // Set the log level
+    [AWSLogger defaultLogger].logLevel = AWSLogLevelVerbose;
+    
+    // Login
+    
+    AWSStaticCredentialsProvider *credentialsProvider = [[AWSStaticCredentialsProvider alloc] initWithAccessKey:@"AKIAJLEVZBPZCHRJCDTQ" secretKey:@"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"];
+    
+    AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1
+                                                                         credentialsProvider:credentialsProvider];
+    [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
+    
+    // Create SNS Client
+    AWSSNS *sns = [AWSSNS defaultSNS];
+    [AWSSNS registerSNSWithConfiguration:configuration forKey:@"AKIAJLEVZBPZCHRJCDTQ" ];
+    
+    // Create an Application Endpoint
+    AWSSNSCreatePlatformEndpointInput *request = [AWSSNSCreatePlatformEndpointInput new];
+    request.token = deviceTokenString;
+    request.platformApplicationArn = @"arn:aws:sns:us-east-1:834524553068:app/APNS_SANDBOX/seguridad-uprrp";
+    request.customUserData = [NSString stringWithFormat:@"Name:%@ Model:%@ (%@:%@)",
+                              [UIDevice currentDevice].name,
+                              [UIDevice currentDevice].model,
+                              [UIDevice currentDevice].systemName,
+                              [UIDevice currentDevice].systemVersion];
+    
+    BFTask *task = [sns createPlatformEndpoint:request];
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error{
@@ -101,35 +135,10 @@
 }
 
 - (void)createAlert:(NSString *)msg {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Received" message:[NSString stringWithFormat:@"%@", msg]delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Received"
+                                                        message:[NSString stringWithFormat:@"%@", msg]delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alertView show];
 }
-
-//- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler {
-//    AWSMobileAnalytics *mobileAnalytics = [AWSMobileAnalytics mobileAnalyticsForAppId:MobileAnalyticsAppId];
-//    id<AWSMobileAnalyticsEventClient> eventClient = mobileAnalytics.eventClient;
-//    id<AWSMobileAnalyticsEvent> pushNotificationEvent = [eventClient createEventWithEventType:@"PushNotificationEvent"];
-//    
-//    NSString *action = @"Undefined";
-//    if ([identifier isEqualToString:@"READ_IDENTIFIER"]) {
-//        action = @"read";
-//        NSLog(@"User selected 'Read'");
-//    } else if ([identifier isEqualToString:@"DELETE_IDENTIFIER"]) {
-//        action = @"Deleted";
-//        NSLog(@"User selected `Delete`");
-//    } else {
-//        action = @"Undefined";
-//    }
-//    
-//    [pushNotificationEvent addAttribute:action forKey:@"Action"];
-//    [eventClient recordEvent:pushNotificationEvent];
-//    
-//    [self.window.rootViewController.childViewControllers.firstObject performSelectorOnMainThread:@selector(displayUserAction:)
-//                                                                                      withObject:action
-//                                                                                   waitUntilDone:NO];
-//    
-//    completionHandler();
-//}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
