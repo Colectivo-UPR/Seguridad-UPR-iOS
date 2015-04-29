@@ -100,7 +100,7 @@
     
     // Login
     
-    AWSStaticCredentialsProvider *credentialsProvider = [[AWSStaticCredentialsProvider alloc] initWithAccessKey:@"AKIAJLEVZBPZCHRJCDTQ" secretKey:@"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"];
+    AWSStaticCredentialsProvider *credentialsProvider = [[AWSStaticCredentialsProvider alloc] initWithAccessKey:@"." secretKey:@"."];
     
     AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1
                                                                          credentialsProvider:credentialsProvider];
@@ -108,7 +108,7 @@
     
     // Create SNS Client
     AWSSNS *sns = [AWSSNS defaultSNS];
-    [AWSSNS registerSNSWithConfiguration:configuration forKey:@"AKIAJLEVZBPZCHRJCDTQ" ];
+    [AWSSNS registerSNSWithConfiguration:configuration forKey:@"." ];
     
     // Create an Application Endpoint
     AWSSNSCreatePlatformEndpointInput *request = [AWSSNSCreatePlatformEndpointInput new];
