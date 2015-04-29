@@ -22,11 +22,13 @@
 
 @implementation HTTPRequestsViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
 }
 
@@ -64,7 +66,8 @@
 - (NSDictionary *)serializeData:(NSData *)data
 {
     NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
-                                                           options:NSJSONReadingMutableLeaves error:nil];
+                            options:NSJSONReadingMutableLeaves error:nil];
+
     DLog(@"Response %@", result);
     return result;
 
@@ -74,15 +77,15 @@
          completion:(void (^)(NSString *status, NSString *token))block
 {
 
-    NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:parameters
+                    options:NSJSONWritingPrettyPrinted error:nil];
+    
     NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/rest-auth/registration/"
-                                                data:data
-                                              method:@"POST"];
+                                    data:data method:@"POST"];
     
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue: [NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-    
+    [NSURLConnection sendAsynchronousRequest:request queue: [NSOperationQueue mainQueue]
+                     completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+    {
         if([self isValid:response]){
             block(@"alert", nil);
         } else {
@@ -96,36 +99,28 @@
 {
  
     NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
-    DLog(@"data %@", data);
+
     NSMutableURLRequest *request = [self RequestInit:@"http://136.145.181.112:8080/rest-auth/login/"
-                                                data:data
-                                              method:@"POST"];
+                                    data:data method:@"POST"];
     
-    DLog(@"data %@", (data));
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
+                     completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    {
         DLog(@"response: %@", response);
         if (data != nil) {
+    
             NSDictionary *result = [self serializeData:data];
             
             if([self isValid:response]){
                 [[NSUserDefaults standardUserDefaults]setValue:[result valueForKey:@"token"] forKey:@"token"];
-                
-                DLog(@"is valid");
-
                 block(@"active", [[NSUserDefaults standardUserDefaults]valueForKey:@"token"]); 
                 
             } else {
-                DLog(@"not valid");
-                
                 if ([result valueForKey:@"non_field_errors"]) {
                     block(@"inactive", nil);
                 }
             }
         } else {
-            DLog(@"vine al else");
-            
             block(@"inactive", @"nil");
         }
     }];

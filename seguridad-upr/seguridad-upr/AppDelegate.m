@@ -13,6 +13,7 @@
 #import "RegistrationAuthViewController.h"
 
 #import "Constant.h"
+#import "Constants.h"
 
 #import <AWSSNS/AWSSNS.h>
 
@@ -70,7 +71,7 @@
     
     if(launchOptions!=nil){
         NSString *msg = [NSString stringWithFormat:@"%@", launchOptions];
-        NSLog(@"%@",msg);
+        DLog(@"%@",msg);
         [self createAlert:msg];
     }
 
@@ -85,7 +86,7 @@
 }
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken{
-    NSLog(@"deviceToken: %@", deviceToken);
+    DLog(@"deviceToken: %@", deviceToken);
     
     NSUInteger dataLength = [deviceToken length];
     NSMutableString *deviceTokenString = [NSMutableString stringWithCapacity:dataLength*2];
@@ -120,17 +121,18 @@
                               [UIDevice currentDevice].systemVersion];
     
     BFTask *task = [sns createPlatformEndpoint:request];
+    DLog(@"task: %@", task);
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error{
-    NSLog(@"Failed to register with error : %@", error);
+    DLog(@"Failed to register with error : %@", error);
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     application.applicationIconBadgeNumber = 0;
     NSString *msg = [NSString stringWithFormat:@"%@", userInfo];
-    NSLog(@"%@",msg);
+    DLog(@"%@",msg);
     [self createAlert:msg];
 }
 

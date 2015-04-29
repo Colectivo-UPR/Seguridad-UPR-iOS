@@ -250,6 +250,8 @@
 		0AC33CF01AAFF2760034C580 /* Model + Data */ = {
 			isa = PBXGroup;
 			children = (
+				0A56D41B1AC8EC06009D5237 /* UPRDataManager.m */,
+				0A56D41A1AC8EC06009D5237 /* UPRDataManager.h */,
 			);
 			name = "Model + Data";
 			sourceTree = "<group>";
@@ -368,11 +370,9 @@
 		CC2766D719F4A5260061AC9A /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
-				0AC33CF11AAFF2C70034C580 /* Networking */,
-				CC2766B119F492700061AC9A /* AppDelegate.h */,
 				CC2766B219F492700061AC9A /* AppDelegate.m */,
-				0A56D41A1AC8EC06009D5237 /* UPRDataManager.h */,
-				0A56D41B1AC8EC06009D5237 /* UPRDataManager.m */,
+				CC2766B119F492700061AC9A /* AppDelegate.h */,
+				0AC33CF11AAFF2C70034C580 /* Networking */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";

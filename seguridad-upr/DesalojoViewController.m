@@ -28,17 +28,24 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
-    tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 220, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
+    tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
+                                                             220,
+                                                             self.view.bounds.size.width,
+                                                             self.view.bounds.size.height)
+                                            style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     
     tableView.backgroundColor = [UIColor whiteColor];
     
     mapView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 60, 320, 400)];
+
     NSString *fullURL = @"http://iupi-app.herokuapp.com/";
+    
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     
@@ -46,7 +53,12 @@
     [mapView loadRequest:requestObj];
 
     UIImage *img = [UIImage imageNamed:@"post.png"];
-    self.alertButton = [[UIBarButtonItem alloc]initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(didTapConnect:)];
+    
+    self.alertButton = [[UIBarButtonItem alloc]initWithImage:img
+                                                       style:UIBarButtonItemStyleDone
+                                                      target:self
+                                                      action:@selector(didTapConnect:)];
+
     self.alertButton.tintColor = [UIColor whiteColor];
     
     self.navigationItem.rightBarButtonItem = self.alertButton;
@@ -57,24 +69,24 @@
     
 }
 
-- (void)didTapConnect:(id)sender {
-//    UIViewController *newAlert = [[UITableViewController alloc]init];
-//    
-//    [self presentViewController:newAlert animated:YES completion:nil];
+- (void)didTapConnect:(id)sender
+{
+
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
--(NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section {
-    
+-(NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
+{
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     CustomCell *cell = (CustomCell *)[theTableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
@@ -89,12 +101,14 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     
 }
 
-- (CGFloat)tableView:(UITableView *)theTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)theTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 300.0;
 }
 
